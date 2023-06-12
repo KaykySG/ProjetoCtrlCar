@@ -4,17 +4,17 @@
  */
 package com.VFPK.Persistencia;
 
-import java.util.ArrayList;
-import com.VFPK.Modelo.Marca;
-
 /**
  *
  * @author aluno
  */
-public interface imarcaDao {
-    
-    public void adicionar()throws Exception;
-    public void alterar()throws Exception;
-    public ArrayList<Marca> listar() throws Exception;
+public class MainNAOUSAR {
+    public static void main(String[] args) {
+        ferramentasPadrao fp = new ferramentasPadrao();
+        try {
+             fp.autenticar();
+        } catch (Exception e) {
+        }
+    }
     
 }

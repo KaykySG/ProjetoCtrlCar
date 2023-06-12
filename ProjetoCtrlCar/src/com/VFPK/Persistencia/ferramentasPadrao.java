@@ -24,18 +24,29 @@ public class ferramentasPadrao {
         try {
             if (conexao == null) {//Estabelecendo a conexao 
                 String driver = "org.postgresql.Driver";
-                String url = "jdbc:postgresql://localhost:5432/GastoCar_BD";
-                String user = "postgres";
-                String password = "aluno";
+                String url = "jdbc:postgresql://localhost:5432/DBVFPK";
+                String user = "admin";
+                String password = "admin";
                 Class.forName(driver);
                 conexao = DriverManager.getConnection(url, user, password);
+                
+                
+                
+                conexao.prepareStatement("Create Table “Teste” (); ");
+                
+                
+                
+                
+                System.out.println(conexao);
+                return conexao;
             }
+            
         } catch (ClassNotFoundException erro){
             System.out.println(erro);
         }
         
-        return conexao;
         
+        return conexao;
     }
     
     
