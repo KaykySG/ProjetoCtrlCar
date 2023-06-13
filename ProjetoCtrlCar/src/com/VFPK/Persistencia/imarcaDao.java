@@ -13,7 +13,7 @@ import com.VFPK.Modelo.Marca;
  */
 public interface imarcaDao {
     
-    public void adicionar()throws Exception;
+    public void adicionar(Marca a)throws Exception;
     public void alterar()throws Exception;
     public ArrayList<Marca> listar() throws Exception;
     

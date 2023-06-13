@@ -11,8 +11,9 @@ package com.VFPK.Persistencia;
 public class MainNAOUSAR {
     public static void main(String[] args) {
         ferramentasPadrao fp = new ferramentasPadrao();
+        marcaDao mc = new marcaDao();
         try {
-             fp.autenticar();
+             mc.adicionar("testemarca","testeurl",123123);
         } catch (Exception e) {
         }
     }
