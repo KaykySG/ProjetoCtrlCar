@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.VFPK.Persistencia;
+import com.VFPK.Modelo.Marca;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *
@@ -13,7 +16,36 @@ public class MainNAOUSAR {
         ferramentasPadrao fp = new ferramentasPadrao();
         marcaDao mc = new marcaDao();
         try {
-             mc.adicionar("testemarca","testeurl",123123);
+            
+            /*
+            Marca marca = new Marca();
+            marca.setNome("nome");
+            marca.setIdMarca(4);
+            marca.setUrlImagem("url");
+            mc.adicionar(marca);
+            
+            marca.setNome("nomealterado");
+            marca.setIdMarca(4);
+            marca.setUrlImagem("urlalterado");
+            mc.alterar(marca);
+            
+            ArrayList<Marca> lista = mc.listar();
+            Iterator listaIte = lista.iterator();
+            
+            for (Iterator<Marca> iterator = lista.iterator(); iterator.hasNext();) {
+                Marca next = iterator.next();
+                System.out.println(next.getNome());
+                
+            }
+            */
+            
+            Marca marca = mc.buscar("nome");
+            
+            System.out.println(marca.getIdMarca());
+            System.out.println(marca.getNome());
+            System.out.println(marca.getUrlImagem());
+            
+            
         } catch (Exception e) {
         }
     }
