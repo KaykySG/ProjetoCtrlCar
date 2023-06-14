@@ -15,7 +15,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
  * @author ageuv
  */
 public class TesteGrafico extends javax.swing.JFrame {
-
+    public DefaultCategoryDataset barra = new DefaultCategoryDataset();
     /**
      * Creates new form Grafico
      */
@@ -29,13 +29,10 @@ public class TesteGrafico extends javax.swing.JFrame {
         criarGrafico();
     }
     public void criarGrafico(){
-        DefaultCategoryDataset barra = new DefaultCategoryDataset();
         barra.setValue(1400, "China", "");
         barra.setValue(1200, "India", "");
         
-        JFreeChart grafico = ChartFactory.createBarChart("A", "B", "C", barra, PlotOrientation.VERTICAL, true, true, false);
-        ChartPanel painel = new ChartPanel(grafico);
-        add(painel);
+        
     }
     
     /**
@@ -47,41 +44,41 @@ public class TesteGrafico extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        JFreeChart grafico = ChartFactory.createBarChart3D("A", "B", "C", barra, PlotOrientation.VERTICAL, true, true, false);
+        jPanelbarra = new ChartPanel(grafico);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout jPanelbarraLayout = new javax.swing.GroupLayout(jPanelbarra);
+        jPanelbarra.setLayout(jPanelbarraLayout);
+        jPanelbarraLayout.setHorizontalGroup(
+            jPanelbarraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanelbarraLayout.setVerticalGroup(
+            jPanelbarraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(130, 130, 130)
-                .addComponent(jButton1)
-                .addContainerGap(195, Short.MAX_VALUE))
+                .addGap(55, 55, 55)
+                .addComponent(jPanelbarra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(245, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(119, 119, 119)
-                .addComponent(jButton1)
-                .addContainerGap(158, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(jPanelbarra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(174, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        criarGrafico();
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -115,11 +112,12 @@ public class TesteGrafico extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TesteGrafico().setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JPanel jPanelbarra;
     // End of variables declaration//GEN-END:variables
 }
