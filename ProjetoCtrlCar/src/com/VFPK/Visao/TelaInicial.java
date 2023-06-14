@@ -12,8 +12,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.UIManager;
 
 /**
  *
@@ -27,7 +25,6 @@ public class TelaInicial extends javax.swing.JFrame {
     public TelaInicial() {
         
         initComponents();
-        
         
         
     }
@@ -511,4 +508,4 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelVeiculos;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
-}
+    }
