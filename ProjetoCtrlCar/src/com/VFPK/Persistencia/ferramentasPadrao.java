@@ -28,6 +28,7 @@ public class ferramentasPadrao {
         
         try {
             if (conexao == null) {//Estabelecendo a conexao 
+                System.out.println("estabelecendo conexão");
                 String driver = "org.postgresql.Driver";
                 String url = "jdbc:postgresql://localhost:5432/DBVFPK";
                 String user = "postgres";
@@ -39,8 +40,10 @@ public class ferramentasPadrao {
             }
             
         } catch (ClassNotFoundException erro){
+            System.out.println("erro autenticação");
             System.out.println(erro);
         }catch(SQLException e){
+            System.out.println("erro autenticação");
             System.out.println(e);       
         }
         
