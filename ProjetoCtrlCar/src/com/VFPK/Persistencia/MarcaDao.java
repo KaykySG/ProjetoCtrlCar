@@ -16,7 +16,7 @@ import java.sql.ResultSet;
  *
  * @author aluno
  */
-public class marcaDao implements imarcaDao{
+public class MarcaDao implements imarcaDao{
 
     
     public void verificarExistenciaBD(Connection conexao)throws Exception, SQLException {
@@ -52,6 +52,10 @@ public class marcaDao implements imarcaDao{
         
         try { 
         
+            if (!buscar(marca.getNome()).getNome().equals("")) {
+                
+            }else{
+            
             // Verificar BD e cadastro
             ferramentasPadrao fp = new ferramentasPadrao();
             Connection conexao = fp.autenticar();
@@ -62,7 +66,7 @@ public class marcaDao implements imarcaDao{
             "insert into marca (nomemarca, urlimg ) values ('"+marca.getNome()+"', '"+marca.getUrlImagem()+"')");
             ps.executeQuery();
 
-            
+            }
         
         } catch (Exception e) {
             System.err.println(e);
@@ -74,17 +78,17 @@ public class marcaDao implements imarcaDao{
         
         try {
             
-            ferramentasPadrao fp = new ferramentasPadrao();
-            Connection conexao = fp.autenticar();
-            verificarExistenciaBD(conexao);
+                
+                ferramentasPadrao fp = new ferramentasPadrao();
+                Connection conexao = fp.autenticar();
+                verificarExistenciaBD(conexao);
             
-            PreparedStatement ps = conexao.prepareStatement(
+                PreparedStatement ps = conexao.prepareStatement(
                 "UPDATE marca\n" +
                 "SET nomemarca = '"+marca.getNome()+"', urlimg = '"+marca.getUrlImagem()+"'\n" +
                 "WHERE idmarca = '"+marca.getIdMarca()+"'; ");
-            ps.executeQuery();
-            
-            
+                ps.executeQuery();
+                
             
         } catch (Exception e) {
             System.out.println(e);
