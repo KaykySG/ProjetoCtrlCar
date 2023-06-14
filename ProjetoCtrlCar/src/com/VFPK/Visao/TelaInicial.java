@@ -5,9 +5,15 @@
 package com.VFPK.Visao;
 
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.beans.PropertyVetoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 
 /**
  *
@@ -21,6 +27,8 @@ public class TelaInicial extends javax.swing.JFrame {
     public TelaInicial() {
         
         initComponents();
+        
+        
         
     }
 
@@ -57,7 +65,15 @@ public class TelaInicial extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        ImageIcon icon = new ImageIcon("./src/com/VFPK/icones/131226-abstract-dark-blue-polygon-pattern-background.jpg");
+        Image image = icon.getImage();
+        jDesktopPane1 = new javax.swing.JDesktopPane(){
+            public void paintComponent(Graphics g){
+
+                g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
+            }
+
+        };
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -127,10 +143,11 @@ public class TelaInicial extends javax.swing.JFrame {
         jPanelGuiaLayout.setHorizontalGroup(
             jPanelGuiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelGuiaLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel14)
-                .addGap(0, 0, 0)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 519, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 507, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(210, 210, 210)
                 .addComponent(jLabelMinimize)
@@ -183,13 +200,16 @@ public class TelaInicial extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Cadastros");
+        jLabel2.setText("Relatório");
         jPanelCadastros.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, -1));
 
         jPanelLateral.add(jPanelCadastros, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 230, -1));
 
         jPanelVeiculos.setBackground(new java.awt.Color(0, 0, 51));
         jPanelVeiculos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanelVeiculosMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jPanelVeiculosMouseEntered(evt);
             }
@@ -273,20 +293,21 @@ public class TelaInicial extends javax.swing.JFrame {
 
         jPanelCore.add(jPanelLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 230, 520));
 
-        jPanel2.setBackground(new java.awt.Color(0, 102, 153));
+        jDesktopPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jDesktopPane1.setForeground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 770, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 160, Short.MAX_VALUE)
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 515, Short.MAX_VALUE)
         );
 
-        jPanelCore.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 770, 160));
+        jPanelCore.add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 25, 770, 515));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -418,6 +439,16 @@ public class TelaInicial extends javax.swing.JFrame {
         jLabelMinimize.setIcon(icon);
     }//GEN-LAST:event_jLabelMinimizeMouseExited
 
+    private void jPanelVeiculosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelVeiculosMouseClicked
+        try {
+            Teste abrir = new Teste();
+            jDesktopPane1.add(abrir);
+            abrir.setVisible(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jPanelVeiculosMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -454,6 +485,7 @@ public class TelaInicial extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -470,7 +502,6 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelMaximize;
     private javax.swing.JLabel jLabelMinimize;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelCadastros;
     private javax.swing.JPanel jPanelCore;
     private javax.swing.JPanel jPanelGastos;
