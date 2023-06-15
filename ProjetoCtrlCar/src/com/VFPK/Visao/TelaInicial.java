@@ -438,7 +438,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void jPanelVeiculosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelVeiculosMouseClicked
         try {
-            Teste abrir = new Teste();
+            Veiculo abrir = new Veiculo();
             jDesktopPane1.add(abrir);
             abrir.setVisible(true);
         } catch (PropertyVetoException ex) {
