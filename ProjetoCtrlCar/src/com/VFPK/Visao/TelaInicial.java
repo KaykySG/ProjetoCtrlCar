@@ -25,7 +25,7 @@ public class TelaInicial extends javax.swing.JFrame {
     public TelaInicial() {
         
         initComponents();
-        
+        setLocationRelativeTo(null);
         
     }
 
@@ -263,6 +263,9 @@ public class TelaInicial extends javax.swing.JFrame {
 
         jPanelGrafico.setBackground(new java.awt.Color(0, 0, 51));
         jPanelGrafico.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanelGraficoMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jPanelGraficoMouseEntered(evt);
             }
@@ -445,6 +448,17 @@ public class TelaInicial extends javax.swing.JFrame {
             Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jPanelVeiculosMouseClicked
+
+    private void jPanelGraficoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelGraficoMouseClicked
+        // TODO add your handling code here:
+        try {
+            TelaGrafico abrir = new TelaGrafico();
+            jDesktopPane1.add(abrir);
+            abrir.setVisible(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jPanelGraficoMouseClicked
 
     /**
      * @param args the command line arguments
