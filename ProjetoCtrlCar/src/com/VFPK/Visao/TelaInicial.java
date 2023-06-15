@@ -94,7 +94,6 @@ public class TelaInicial extends javax.swing.JFrame {
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/VFPK/icones/CtrlCar_Logo.png"))); // NOI18N
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Sistema de controle de Gastos");
 
         jLabelMinimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/VFPK/icones/icons8_minus_20px.png"))); // NOI18N
@@ -183,6 +182,9 @@ public class TelaInicial extends javax.swing.JFrame {
 
         jPanelCadastros.setBackground(new java.awt.Color(0, 0, 51));
         jPanelCadastros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanelCadastrosMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jPanelCadastrosMouseEntered(evt);
             }
@@ -228,6 +230,9 @@ public class TelaInicial extends javax.swing.JFrame {
 
         jPanelGastos.setBackground(new java.awt.Color(0, 0, 51));
         jPanelGastos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanelGastosMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jPanelGastosMouseEntered(evt);
             }
@@ -459,6 +464,31 @@ public class TelaInicial extends javax.swing.JFrame {
             Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jPanelGraficoMouseClicked
+
+    private void jPanelGastosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelGastosMouseClicked
+        // TODO add your handling code here:
+        try {
+            TelaGastos abrir = new TelaGastos();
+            jDesktopPane1.add(abrir);
+            abrir.setVisible(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+    }//GEN-LAST:event_jPanelGastosMouseClicked
+
+    private void jPanelCadastrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelCadastrosMouseClicked
+        // TODO add your handling code here:
+        try {
+            TelaRelatorios abrir = new TelaRelatorios();
+            jDesktopPane1.add(abrir);
+            abrir.setVisible(true);
+        } catch (PropertyVetoException ex) {
+           Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        
+    }//GEN-LAST:event_jPanelCadastrosMouseClicked
 
     /**
      * @param args the command line arguments
