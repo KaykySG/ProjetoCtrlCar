@@ -93,6 +93,7 @@ public class Veiculo extends javax.swing.JInternalFrame {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
+        jTable1.setBackground(new java.awt.Color(255, 255, 255));
         jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -105,8 +106,11 @@ public class Veiculo extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.setSelectionBackground(new java.awt.Color(0, 0, 102));
         jScrollPane1.setViewportView(jTable1);
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Novo Veículo");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,22 +118,30 @@ public class Veiculo extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setForeground(new java.awt.Color(0, 0, 0));
         jButton2.setText("Editar");
 
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
+        jButton3.setForeground(new java.awt.Color(0, 0, 0));
         jButton3.setText("Deletar");
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Marca:");
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Modelo:");
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Placa:");
 
+        jTextFieldPlaca.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldPlaca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldPlacaActionPerformed(evt);
@@ -137,16 +149,20 @@ public class Veiculo extends javax.swing.JInternalFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Foto do veículo");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setText("    BUSCAR");
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("     BUSCAR");
         jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Tipo de combustível:");
 
+        jTextFieldPlacaTipoCombustível.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldPlacaTipoCombustível.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldPlacaTipoCombustívelActionPerformed(evt);
@@ -155,14 +171,18 @@ public class Veiculo extends javax.swing.JInternalFrame {
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Quilometragem:");
 
+        jTextFieldQuilometragem.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldQuilometragem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldQuilometragemActionPerformed(evt);
             }
         });
 
+        jButton4.setBackground(new java.awt.Color(255, 255, 255));
+        jButton4.setForeground(new java.awt.Color(0, 0, 0));
         jButton4.setText("Cadastrar marca");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,6 +190,8 @@ public class Veiculo extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton5.setBackground(new java.awt.Color(255, 255, 255));
+        jButton5.setForeground(new java.awt.Color(0, 0, 0));
         jButton5.setText("Cadastrar modelo");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,9 +199,13 @@ public class Veiculo extends javax.swing.JInternalFrame {
             }
         });
 
+        jComboBoxMarca.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBoxMarca.setForeground(new java.awt.Color(0, 0, 0));
         jComboBoxMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxMarca.setFocusable(false);
 
+        jComboBoxModelo.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBoxModelo.setForeground(new java.awt.Color(0, 0, 0));
         jComboBoxModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxModelo.setFocusable(false);
 
