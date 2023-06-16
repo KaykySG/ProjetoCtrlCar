@@ -12,13 +12,13 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
  *
  * @author aluno
  */
-public class Veiculo extends javax.swing.JInternalFrame {
+public class TelaVeiculo extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Teste
      * @throws java.beans.PropertyVetoException
      */
-    public Veiculo() throws PropertyVetoException {
+    public TelaVeiculo() throws PropertyVetoException {
         initComponents();
         setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
