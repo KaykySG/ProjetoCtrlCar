@@ -248,11 +248,6 @@ public class TelaInicial extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Gastos");
-        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel8MouseExited(evt);
-            }
-        });
         jPanelGastos.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, -1));
 
         jPanelLateral.add(jPanelGastos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 230, -1));
