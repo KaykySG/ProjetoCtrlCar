@@ -35,8 +35,8 @@ public class modeloDao implements imodeloDao{
         
         } catch (Exception e) {
             
-            if (e.toString().equals("org.postgresql.util.PSQLException: ERROR: relation \"marca\" already exists")) {
-                System.err.println("Table Marca ja existe");
+            if (e.toString().equals("org.postgresql.util.PSQLException: ERROR: relation \"modelo\" already exists")) {
+                //System.err.println("Table Modelo ja existe");
             }else{
                 System.err.println(e);
             }
@@ -52,20 +52,20 @@ public class modeloDao implements imodeloDao{
         
             ferramentasPadrao fp = new ferramentasPadrao();
             Connection conexao = fp.autenticar();
-            verificarExistenciaBD(conexao);
+            //verificarExistenciaBD(conexao);
             
             if (!buscar(modelo.getIdModelo()).getNome().equals(modelo.getNome())) {
-                
-            }else{
-
-            PreparedStatement ps = conexao.prepareStatement(
-            "insert into modelo (nomemodelo, urlimg, idmarca) values ('"+modelo.getNome()+"', '"+modelo.getUrlImagem()+"','"+modelo.getMarca().getIdMarca()+"')");
+                PreparedStatement ps = conexao.prepareStatement(
+            "insert into modelo (nomemodelo, urlimg, idmarca) values ('"+modelo.getNome()+"', '"+modelo.getUrlImagem()+"','"+modelo.getMarca().getIdMarca()+"');");
             ps.executeQuery();
+            }else{
+                
+                System.out.println("ja existe");
 
             }
         
         } catch (Exception e) {
-            System.err.println(e);
+            System.out.println(e);
         }
         
     }

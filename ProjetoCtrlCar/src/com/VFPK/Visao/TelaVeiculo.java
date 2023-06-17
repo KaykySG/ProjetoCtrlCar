@@ -4,9 +4,21 @@
  */
 package com.VFPK.Visao;
 
+import com.VFPK.Modelo.Marca;
+import com.VFPK.Modelo.Modelo;
+import com.VFPK.Persistencia.MarcaDao;
+import com.VFPK.Persistencia.imarcaDao;
+import com.VFPK.Persistencia.imodeloDao;
+import com.VFPK.Persistencia.modeloDao;
 import java.awt.CardLayout;
 import java.beans.PropertyVetoException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -14,6 +26,8 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
  */
 public class TelaVeiculo extends javax.swing.JInternalFrame {
 
+    imarcaDao marcaDao = new MarcaDao();
+    
     /**
      * Creates new form Teste
      * @throws java.beans.PropertyVetoException
@@ -206,8 +220,12 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
 
         jComboBoxModelo.setBackground(new java.awt.Color(255, 255, 255));
         jComboBoxModelo.setForeground(new java.awt.Color(0, 0, 0));
-        jComboBoxModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxModelo.setFocusable(false);
+        jComboBoxModelo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBoxModeloMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -336,6 +354,62 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
         telaModelo.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jComboBoxModeloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxModeloMouseClicked
+        try {
+            // TODO add your handling code here:
+          jComboBoxModelo.removeAllItems();
+            imprimirDadosNaComboBoxModelo(marcaDao.listar());
+        } catch (Exception ex) {
+            Logger.getLogger(TelaVeiculo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jComboBoxModeloMouseClicked
+
+//    
+//    private void ImprimirDadosNaGrid(ArrayList<Modelo> listaDeVeiculo){
+//        try{
+//            DefaultTableModel model = (DefaultTableModel) jTableVeiculo.getModel();
+//            //limpar a tabela
+//            model.setNumRows(0);
+//            Iterator<Modelo> lista = listaDeVeiculo.iterator();
+//            
+//            while(lista.hasNext()){
+//                String[] saida = new String[3];
+//                Modelo aux = lista.next();
+//                
+//                saida[0] = aux.getModelo() + "";
+//                saida[1] = aux.getPlaca() + "";
+//                saida[2] = aux.getRenavam() + "";
+//                saida[3] = aux.getTipo() + "";
+//                saida[4] = aux.getCombustivel() + "";
+//                saida[5] = aux.getSituacao() + "";
+//                saida[6] = aux.getPrecoDeCompra() + "";
+//                saida[7] = aux.getPrecoDeVenda() + "";
+//                saida[8] = aux.getQuilometragem() + "";
+//                saida[9] = aux.getAnoDeModelo() + "";
+//                saida[10] = aux.getAnoDeFabricao() + "";
+//                saida[11] = aux.getId() + "";
+//                Object[] dados = {saida[0], saida[1], saida[2], saida[3], saida[4], saida[5], saida[6], saida[7], saida[8], saida[9], saida[10], saida[11]};
+//                model.addRow(dados);
+//            }
+//        } catch (Exception erro){
+//            JOptionPane.showMessageDialog(this, erro.getMessage());
+//        }
+//    }
+//    
+ private void imprimirDadosNaComboBoxModelo (ArrayList<Marca> listaDeModelos){
+        try{
+        
+        Iterator<Marca> lista = listaDeModelos.iterator();
+        
+        while(lista.hasNext()){
+            Marca aux = lista.next();
+            jComboBoxModelo.addItem(aux.getNome());
+            
+            }
+        }catch(Exception erro){
+                JOptionPane.showMessageDialog(this, erro.getMessage());
+    }
+        }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

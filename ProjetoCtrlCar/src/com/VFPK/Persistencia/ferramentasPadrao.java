@@ -31,8 +31,8 @@ public class ferramentasPadrao {
                 System.out.println("estabelecendo conexão");
                 String driver = "org.postgresql.Driver";
                 String url = "jdbc:postgresql://localhost:5432/DBVFPK";
-                String user = "postgres";
-                String password = "aluno";
+                String user = "adm";
+                String password = "123";
                 Class.forName(driver);
                 conexao = DriverManager.getConnection(url, user, password);
                 System.out.println("Conectado no banco de dados com sucesso");

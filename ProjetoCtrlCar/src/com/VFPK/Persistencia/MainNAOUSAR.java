@@ -18,46 +18,48 @@ public class MainNAOUSAR {
         ferramentasPadrao fp = new ferramentasPadrao();
         
         imarcaDao mc = new MarcaDao();
-        imodeloDao mod = new modeloDao();
+        imodeloDao modeloDAO = new modeloDao();
         
         try {
-            /*
             
-            Marca marca = new Marca();
-            marca.setNome("nome");
-            marca.setIdMarca(4);
-            marca.setUrlImagem("url");
-            mc.adicionar(marca);
+            
+          Marca marca = new Marca("for","url",1);
+//            marca.setNome("nome");
+//            marca.setIdMarca(4);
+//            marca.setUrlImagem("url");
+//           // mc.adicionar(marca);
             
             marca.setNome("nomealterado");
             marca.setIdMarca(1);
             marca.setUrlImagem("urlalterado");
-            mc.alterar(marca);
+////            mc.alterar(marca);
+//            
+//            ArrayList<Marca> lista = mc.listar();
+//            Iterator listaIte = lista.iterator();
             
-            ArrayList<Marca> lista = mc.listar();
-            Iterator listaIte = lista.iterator();
-            
-            for (Iterator<Marca> iterator = lista.iterator(); iterator.hasNext();) {
-                Marca next = iterator.next();
-                System.out.println(next.getNome());
-                
-            }
+//            for (Iterator<Marca> iterator = lista.iterator(); iterator.hasNext();) {
+//                Marca next = iterator.next();
+//                System.out.println(next.getNome());
+//                
+//            }
             
             
-            marca = mc.buscar("nome");
+            //marca = mc.buscar("nome");
             
             System.out.println(marca.getIdMarca());
             System.out.println(marca.getNome());
             System.out.println(marca.getUrlImagem());
-            */
+            
         
+            
+   
+            System.out.println("Antes de tudo");
             Modelo modelo = new Modelo();
-            Marca marca = new Marca();
-            modelo.setMarca(mc.buscar(1));
-            modelo.setIdModelo(1);
-            modelo.setNome("testenome");
+            modelo.setMarca(marca);
+            modelo.setIdModelo(5);
+            modelo.setNome("testenomehfgf");
             modelo.setUrlImagem("url");
-            mod.adicionar(modelo);
+            modeloDAO.adicionar(modelo);
             
             
         

@@ -63,7 +63,7 @@ public class MarcaDao implements imarcaDao{
             
 
             PreparedStatement ps = conexao.prepareStatement(
-            "insert into marca (nomemarca, urlimg ) values ('"+marca.getNome()+"', '"+marca.getUrlImagem()+"')");
+            "insert into marca (nomemarca, urlimg ) values ('"+marca.getNome()+"', '"+marca.getUrlImagem()+"');");
             ps.executeQuery();
 
             }
