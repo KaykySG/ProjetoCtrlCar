@@ -25,7 +25,7 @@ public class TelaInicial extends javax.swing.JFrame {
     public TelaInicial() {
         
         initComponents();
-        setLocationRelativeTo(null);
+        
         
     }
 
@@ -47,15 +47,15 @@ public class TelaInicial extends javax.swing.JFrame {
         jLabelClose = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanelLateral = new javax.swing.JPanel();
-        jPanelRelatorios = new javax.swing.JPanel();
+        jPanelCadastros = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanelVeiculos = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jPanelGastos = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jPanelGrafico = new javax.swing.JPanel();
@@ -94,6 +94,7 @@ public class TelaInicial extends javax.swing.JFrame {
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/VFPK/icones/CtrlCar_Logo.png"))); // NOI18N
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Sistema de controle de Gastos");
 
         jLabelMinimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/VFPK/icones/icons8_minus_20px.png"))); // NOI18N
@@ -180,29 +181,26 @@ public class TelaInicial extends javax.swing.JFrame {
         jPanelLateral.setBackground(new java.awt.Color(0, 0, 51));
         jPanelLateral.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanelRelatorios.setBackground(new java.awt.Color(0, 0, 51));
-        jPanelRelatorios.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanelRelatoriosMouseClicked(evt);
-            }
+        jPanelCadastros.setBackground(new java.awt.Color(0, 0, 51));
+        jPanelCadastros.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jPanelRelatoriosMouseEntered(evt);
+                jPanelCadastrosMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jPanelRelatoriosMouseExited(evt);
+                jPanelCadastrosMouseExited(evt);
             }
         });
-        jPanelRelatorios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanelCadastros.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/VFPK/icones/icons8_notepad_35px.png"))); // NOI18N
-        jPanelRelatorios.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 40, 40));
+        jPanelCadastros.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 40, 40));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Relatório");
-        jPanelRelatorios.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, -1));
+        jPanelCadastros.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, -1));
 
-        jPanelLateral.add(jPanelRelatorios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 230, -1));
+        jPanelLateral.add(jPanelCadastros, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 230, -1));
 
         jPanelVeiculos.setBackground(new java.awt.Color(0, 0, 51));
         jPanelVeiculos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -221,18 +219,15 @@ public class TelaInicial extends javax.swing.JFrame {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/VFPK/icones/icons8_car_35px.png"))); // NOI18N
         jPanelVeiculos.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 40, 40));
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Veículos");
-        jPanelVeiculos.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, -1));
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Veículos");
+        jPanelVeiculos.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, -1));
 
         jPanelLateral.add(jPanelVeiculos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 230, -1));
 
         jPanelGastos.setBackground(new java.awt.Color(0, 0, 51));
         jPanelGastos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanelGastosMouseClicked(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jPanelGastosMouseEntered(evt);
             }
@@ -245,10 +240,15 @@ public class TelaInicial extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/VFPK/icones/icons8_money_bag_35px.png"))); // NOI18N
         jPanelGastos.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 40, 40));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Gastos");
-        jPanelGastos.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, -1));
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Gastos");
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel8MouseExited(evt);
+            }
+        });
+        jPanelGastos.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, -1));
 
         jPanelLateral.add(jPanelGastos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 230, -1));
 
@@ -263,9 +263,6 @@ public class TelaInicial extends javax.swing.JFrame {
 
         jPanelGrafico.setBackground(new java.awt.Color(0, 0, 51));
         jPanelGrafico.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanelGraficoMouseClicked(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jPanelGraficoMouseEntered(evt);
             }
@@ -370,6 +367,10 @@ public class TelaInicial extends javax.swing.JFrame {
         jPanelGastos.setBackground(Color.decode("#4169E1"));
     }//GEN-LAST:event_jPanelGastosMouseEntered
 
+    private void jLabel8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel8MouseExited
+
     private void jPanelGastosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelGastosMouseExited
         // TODO add your handling code here:
         jPanelGastos.setBackground(Color.decode("#000033"));
@@ -389,15 +390,15 @@ public class TelaInicial extends javax.swing.JFrame {
         jPanelGrafico.setBackground(Color.decode("#000033"));
     }//GEN-LAST:event_jPanelGraficoMouseExited
 
-    private void jPanelRelatoriosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelRelatoriosMouseEntered
+    private void jPanelCadastrosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelCadastrosMouseEntered
         // TODO add your handling code here:
-        jPanelRelatorios.setBackground(Color.decode("#4169E1"));
-    }//GEN-LAST:event_jPanelRelatoriosMouseEntered
+        jPanelCadastros.setBackground(Color.decode("#4169E1"));
+    }//GEN-LAST:event_jPanelCadastrosMouseEntered
 
-    private void jPanelRelatoriosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelRelatoriosMouseExited
+    private void jPanelCadastrosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelCadastrosMouseExited
         // TODO add your handling code here:
-        jPanelRelatorios.setBackground(Color.decode("#000033"));
-    }//GEN-LAST:event_jPanelRelatoriosMouseExited
+        jPanelCadastros.setBackground(Color.decode("#000033"));
+    }//GEN-LAST:event_jPanelCadastrosMouseExited
 
     private void jLabelCloseMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCloseMouseEntered
         // TODO add your handling code here:
@@ -437,73 +438,13 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void jPanelVeiculosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelVeiculosMouseClicked
         try {
-            TelaVeiculo abrirVeiculo = new TelaVeiculo();
-            TelaGastos abrirGastos = new TelaGastos();
-            TelaGrafico abrirGrafico = new TelaGrafico();
-            TelaRelatorios abrirRelatorio = new TelaRelatorios();
-            jDesktopPane1.add(abrirVeiculo);
-            abrirGastos.dispose();
-            abrirRelatorio.dispose();
-            abrirGrafico.dispose();
-            abrirVeiculo.setVisible(true);
+            Teste abrir = new Teste();
+            jDesktopPane1.add(abrir);
+            abrir.setVisible(true);
         } catch (PropertyVetoException ex) {
             Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jPanelVeiculosMouseClicked
-
-    private void jPanelGraficoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelGraficoMouseClicked
-        // TODO add your handling code here:
-        try {
-            TelaVeiculo abrirVeiculo = new TelaVeiculo();
-            TelaGastos abrirGastos = new TelaGastos();
-            TelaRelatorios abrirRelatorio = new TelaRelatorios();
-            TelaGrafico abrirGrafico = new TelaGrafico();
-            jDesktopPane1.add(abrirGrafico);
-            abrirGrafico.setVisible(true);
-            abrirGastos.dispose();
-            abrirRelatorio.dispose();
-            abrirVeiculo.dispose();
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jPanelGraficoMouseClicked
-
-    private void jPanelGastosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelGastosMouseClicked
-        // TODO add your handling code here:
-        try {
-            TelaVeiculo abrirVeiculo = new TelaVeiculo();
-            TelaGastos abrirGastos = new TelaGastos();
-            TelaRelatorios abrirRelatorio = new TelaRelatorios();
-            TelaGrafico abrirGrafico = new TelaGrafico();
-            jDesktopPane1.add(abrirGastos);
-            abrirVeiculo.dispose();
-            abrirRelatorio.dispose();
-            abrirGrafico.dispose();
-            abrirGastos.setVisible(true);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
-
-        }
-    }//GEN-LAST:event_jPanelGastosMouseClicked
-
-    private void jPanelRelatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelRelatoriosMouseClicked
-        // TODO add your handling code here:
-        try {
-            TelaVeiculo abrirVeiculo = new TelaVeiculo();
-            TelaGastos abrirGastos = new TelaGastos();
-            TelaRelatorios abrirRelatorios = new TelaRelatorios();
-            TelaGrafico abrirGrafico = new TelaGrafico();
-            jDesktopPane1.add(abrirRelatorios);
-            abrirRelatorios.setVisible(true);
-            abrirGastos.dispose();
-            abrirGrafico.dispose();
-            abrirVeiculo.dispose();
-        } catch (PropertyVetoException ex) {
-           Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
-
-        }
-        
-    }//GEN-LAST:event_jPanelRelatoriosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -552,18 +493,18 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelClose;
     private javax.swing.JLabel jLabelMaximize;
     private javax.swing.JLabel jLabelMinimize;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanelCadastros;
     private javax.swing.JPanel jPanelCore;
     private javax.swing.JPanel jPanelGastos;
     private javax.swing.JPanel jPanelGrafico;
     private javax.swing.JPanel jPanelGuia;
     private javax.swing.JPanel jPanelLateral;
-    private javax.swing.JPanel jPanelRelatorios;
     private javax.swing.JPanel jPanelVeiculos;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables

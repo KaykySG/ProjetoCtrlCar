@@ -9,6 +9,7 @@ package com.VFPK.Modelo;
  * @author viniciusfs.senai
  */
 public class TipoDeGastos {
+    
      private int idTipoDeGasto = 0;
      private String NomeTipoDeGasto = "";
 

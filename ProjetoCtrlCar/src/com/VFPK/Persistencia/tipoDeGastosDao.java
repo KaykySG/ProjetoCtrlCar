@@ -4,39 +4,37 @@
  */
 package com.VFPK.Persistencia;
 
-import java.util.ArrayList;
 import com.VFPK.Modelo.Marca;
-import java.sql.PreparedStatement;
+import com.VFPK.Modelo.TipoDeGastos;
 import java.sql.Connection;
-import com.VFPK.Persistencia.ferramentasPadrao;
-import java.sql.SQLException;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
- * @author aluno
+ * @author FelipeJaber
  */
-public class MarcaDao implements imarcaDao{
+public class tipoDeGastosDao implements itipoDeGastosDao{
 
-    
     public void verificarExistenciaBD(Connection conexao)throws Exception, SQLException {
         
         try {
         
         PreparedStatement ps = conexao.prepareStatement(
-                        "CREATE TABLE public.\"marca\"\n" +
+                        "CREATE TABLE public.\"tipodegasto\"\n" +
                         "(\n" +
-                        "    \"idmarca\" SERIAL,\n" +
-                        "    \"nomemarca\" varchar(20) NOT NULL UNIQUE,\n" +
-                        "    \"urlimg\" varchar(100) NOT NULL,\n" +
+                        "    \"idtipodegasto\" SERIAL,\n" +
+                        "    \"nometipodegasto\" varchar(20) NOT NULL UNIQUE,\n" +
                         "    PRIMARY KEY (\"idmarca\")\n" +
                         ");");
         ps.executeUpdate();
         
         } catch (Exception e) {
             
-            if (e.toString().equals("org.postgresql.util.PSQLException: ERROR: relation \"marca\" already exists")) {
-                //System.err.println("Table Marca ja existe");
+            if (e.toString().equals("org.postgresql.util.PSQLException: ERROR: relation \"tipodegasto\" already exists")) {
+                //System.err.println("Table Tipo de gastos ja existe");
             }else{
                 //System.err.println(e);
             }
@@ -44,15 +42,13 @@ public class MarcaDao implements imarcaDao{
         } 
         
     }
-
-    
     
     @Override
-    public void adicionar(Marca marca) throws Exception {
+    public void adicionar(TipoDeGastos tipodegastos) throws Exception {
         
         try { 
         
-            if (!buscar(marca.getIdMarca()).getNome().equals("")) {
+            if (!buscar(tipodegastos.getIdTipoDeGasto()).getNomeTipoDeGasto().equals("")) {
                 
             }else{
             
@@ -63,7 +59,7 @@ public class MarcaDao implements imarcaDao{
             
 
             PreparedStatement ps = conexao.prepareStatement(
-            "insert into marca (nomemarca, urlimg ) values ('"+marca.getNome()+"', '"+marca.getUrlImagem()+"')");
+            "insert into tipodegasto (idtipodegasto, nometipodegasto ) values ('"+tipodegastos.getIdTipoDeGasto()+"', '"+tipodegastos.getIdTipoDeGasto()+"')");
             ps.executeQuery();
 
             }
@@ -71,10 +67,11 @@ public class MarcaDao implements imarcaDao{
         } catch (Exception e) {
             System.err.println(e);
         }
+        
     }
 
     @Override
-    public void alterar(Marca marca) throws Exception {
+    public void alterar(TipoDeGastos tipodegastos) throws Exception {
         
         try {
             
@@ -84,9 +81,9 @@ public class MarcaDao implements imarcaDao{
                 verificarExistenciaBD(conexao);
             
                 PreparedStatement ps = conexao.prepareStatement(
-                "UPDATE marca\n" +
-                "SET nomemarca = '"+marca.getNome()+"', urlimg = '"+marca.getUrlImagem()+"'\n" +
-                "WHERE idmarca = '"+marca.getIdMarca()+"'; ");
+                "UPDATE tipodegasto\n" +
+                "SET nometipodegasto = '"+tipodegastos.getNomeTipoDeGasto()+"'\n" +
+                "WHERE idtipodegasto = '"+tipodegastos.getIdTipoDeGasto()+"'; ");
                 ps.executeQuery();
                 
             
@@ -97,9 +94,42 @@ public class MarcaDao implements imarcaDao{
     }
 
     @Override
-    public ArrayList<Marca> listar() throws Exception {
+    public TipoDeGastos buscar(int id) throws Exception {
         
-        ArrayList<Marca> lista = new ArrayList<>();
+        TipoDeGastos tipoDeGastos = new TipoDeGastos();
+        
+        try {
+            ferramentasPadrao fp = new ferramentasPadrao();
+            Connection conexao = fp.autenticar();
+            verificarExistenciaBD(conexao);
+            
+            PreparedStatement ps = conexao.prepareStatement(
+                "SELECT * FROM tipodegasto WHERE id = '"+tipoDeGastos.getIdTipoDeGasto()+"'");
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                
+                tipoDeGastos.setIdTipoDeGasto(ps.getResultSet().getInt("idtipodegasto"));
+                tipoDeGastos.setNomeTipoDeGasto(ps.getResultSet().getString("nometipodegasto"));
+            
+            }
+            
+            
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        
+        return tipoDeGastos;
+        
+    }
+    
+    
+
+    @Override
+    public ArrayList<TipoDeGastos> listar() throws Exception {
+        
+        ArrayList<TipoDeGastos> lista = new ArrayList<>();
         
         try {
             
@@ -114,13 +144,12 @@ public class MarcaDao implements imarcaDao{
             
             while(rs.next()){
                 
-                Marca marca = new Marca();
+                TipoDeGastos tipodegastos = new TipoDeGastos();
                 
-                marca.setIdMarca(ps.getResultSet().getInt("idmarca"));
-                marca.setNome(ps.getResultSet().getString("nomemarca"));
-                marca.setUrlImagem(ps.getResultSet().getString("urlimg"));
+                tipodegastos.setIdTipoDeGasto(ps.getResultSet().getInt("idtipodegasto"));
+                tipodegastos.setNomeTipoDeGasto(ps.getResultSet().getString("nometipodegasto"));
                 
-                lista.add(marca);
+                lista.add(tipodegastos);
             
             }
             
@@ -132,35 +161,6 @@ public class MarcaDao implements imarcaDao{
         
         return lista;
     }
-
-    @Override
-    public Marca buscar(int id) throws Exception {
-        
-        Marca marca = new Marca();
-        
-        try {
-            ferramentasPadrao fp = new ferramentasPadrao();
-            Connection conexao = fp.autenticar();
-            verificarExistenciaBD(conexao);
-            
-            PreparedStatement ps = conexao.prepareStatement(
-                "SELECT * FROM marca WHERE idmarca = '"+id+"'");
-            
-            ResultSet rs = ps.executeQuery();
-            
-            while(rs.next()){
-            marca.setIdMarca(ps.getResultSet().getInt("idmarca"));
-            marca.setNome(ps.getResultSet().getString("nomemarca"));
-            marca.setUrlImagem(ps.getResultSet().getString("urlimg"));
-            }
-            
-            
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        
-        return marca;
-        
     }
     
-}
+

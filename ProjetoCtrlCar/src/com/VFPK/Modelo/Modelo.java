@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.VFPK.Modelo;
+import com.VFPK.Modelo.Marca;
 
 /**
  *
@@ -13,17 +14,17 @@ public class Modelo {
     private String Nome = "";
     private String UrlImagem = "";
     private int idModelo = 0;
-    private int idMarca = 0;
+    private Marca marca = null;
 
     public Modelo() {
     }
     
-    public Modelo(String Nome, String UrlImagem,int idModelo, int idMarca) {
+    public Modelo(String Nome, String UrlImagem,int idModelo, Marca marca) {
         
          this.Nome = Nome;
          this.UrlImagem = UrlImagem;
          this.idModelo = idModelo;
-         this.idMarca = idMarca;
+         this.marca = marca;
     }
 
     public String getNome() {
@@ -50,16 +51,18 @@ public class Modelo {
         this.idModelo = idModelo;
     }
 
-    public int getIdMarca() {
-        return idMarca;
+    public Marca getMarca() {
+        return marca;
     }
 
-    public void setIdMarca(int idMarca) {
-        this.idMarca = idMarca;
+    public void setMarca(Marca marca) {
+        this.marca = marca;
     }
+
+    
 
     @Override
     public String toString() {
-        return Nome + ";" + UrlImagem + ";" + idModelo + ";" + idMarca;
+        return Nome + ";" + UrlImagem + ";" + idModelo + ";" + marca.getNome();
     }
 }

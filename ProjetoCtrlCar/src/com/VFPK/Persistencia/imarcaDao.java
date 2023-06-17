@@ -15,7 +15,7 @@ public interface imarcaDao {
     
     public void adicionar(Marca marca)throws Exception;
     public void alterar(Marca marca)throws Exception;
-    public Marca buscar(String nomemarca)throws Exception;
+    public Marca buscar(int id)throws Exception;
     public ArrayList<Marca> listar() throws Exception;
     
 }
