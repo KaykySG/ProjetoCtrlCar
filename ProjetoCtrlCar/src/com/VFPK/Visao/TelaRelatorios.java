@@ -4,7 +4,16 @@
  */
 package com.VFPK.Visao;
 
+import com.VFPK.Modelo.TipoDeGastos;
+import com.VFPK.Modelo.Veiculo;
+import com.VFPK.Persistencia.tipoDeGastosDao;
+import com.VFPK.Persistencia.veiculoDao;
 import java.beans.PropertyVetoException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
@@ -12,7 +21,8 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
  * @author viniciusfs.senai
  */
 public class TelaRelatorios extends javax.swing.JInternalFrame {
-
+    veiculoDao veiculoDao = new veiculoDao();
+    tipoDeGastosDao tipoGastosDao = new tipoDeGastosDao();
     /**
      * Creates new form TelaRelatorios
      */
@@ -22,6 +32,32 @@ public class TelaRelatorios extends javax.swing.JInternalFrame {
         BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
         bi.setNorthPane(null);
         setMaximum(true);
+    }
+    private void imprimirDadosNaComboBoxVeiculo(ArrayList<Veiculo> listaDeVeiculos){
+            try{
+        jComboBoxRelVeiculo.removeAllItems();
+        Iterator<Veiculo> lista = listaDeVeiculos.iterator();
+        
+        while(lista.hasNext()){
+            Veiculo aux = lista.next();
+            jComboBoxRelVeiculo.addItem(aux.getPlaca());
+        }
+    }catch(Exception erro){
+                JOptionPane.showMessageDialog(this, erro.getMessage());
+    }
+    }
+    private void imprimirDadosNaComboBoxTipoGasto(ArrayList<TipoDeGastos> listaDeTiposDeGasto){
+            try{
+        jComboBoxRelTipoGasto.removeAllItems();
+        Iterator<TipoDeGastos> lista = listaDeTiposDeGasto.iterator();
+        
+        while(lista.hasNext()){
+            TipoDeGastos aux = lista.next();
+            jComboBoxRelTipoGasto.addItem(aux.getNomeTipoDeGasto());
+        }
+    }catch(Exception erro){
+                JOptionPane.showMessageDialog(this, erro.getMessage());
+    }
     }
 
     /**
@@ -38,13 +74,13 @@ public class TelaRelatorios extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableGasto = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jComboBoxVeiculo = new javax.swing.JComboBox<>();
+        jComboBoxRelVeiculo = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
-        jComboBoxGasto = new javax.swing.JComboBox<>();
+        jComboBoxRelTipoGasto = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
-        jComboBoxAno = new javax.swing.JComboBox<>();
+        jComboBoxRelAno = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
-        jComboBoxMes = new javax.swing.JComboBox<>();
+        jComboBoxRelMes = new javax.swing.JComboBox<>();
         jButtonEmitir = new javax.swing.JButton();
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 153));
@@ -88,25 +124,35 @@ public class TelaRelatorios extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Veiculo:");
 
-        jComboBoxVeiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxRelVeiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxRelVeiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxRelVeiculoActionPerformed(evt);
+            }
+        });
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("Tipo de gasto:");
 
-        jComboBoxGasto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxRelTipoGasto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxRelTipoGasto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxRelTipoGastoActionPerformed(evt);
+            }
+        });
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setText("Ano:");
 
-        jComboBoxAno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxRelAno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel9.setText("Mês:");
 
-        jComboBoxMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxRelMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButtonEmitir.setText("Emitir");
 
@@ -129,21 +175,21 @@ public class TelaRelatorios extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBoxGasto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jComboBoxRelTipoGasto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBoxVeiculo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(jComboBoxRelVeiculo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(123, 123, 123)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBoxAno, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jComboBoxRelAno, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBoxMes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(jComboBoxRelMes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(159, 159, 159))))
         );
         layout.setVerticalGroup(
@@ -153,15 +199,15 @@ public class TelaRelatorios extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBoxVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxRelVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(jComboBoxAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxRelAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jComboBoxGasto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxRelTipoGasto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
-                    .addComponent(jComboBoxMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxRelMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButtonEmitir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
@@ -172,13 +218,31 @@ public class TelaRelatorios extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jComboBoxRelVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxRelVeiculoActionPerformed
+        try {
+            // TODO add your handling code here:
+            imprimirDadosNaComboBoxVeiculo(veiculoDao.listar());
+        } catch (Exception erro) {
+            
+        }
+    }//GEN-LAST:event_jComboBoxRelVeiculoActionPerformed
+
+    private void jComboBoxRelTipoGastoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxRelTipoGastoActionPerformed
+        try {
+            // TODO add your handling code here:
+            imprimirDadosNaComboBoxTipoGasto(tipoGastosDao.listar());
+        } catch (Exception erro) {
+            
+        }
+    }//GEN-LAST:event_jComboBoxRelTipoGastoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonEmitir;
-    private javax.swing.JComboBox<String> jComboBoxAno;
-    private javax.swing.JComboBox<String> jComboBoxGasto;
-    private javax.swing.JComboBox<String> jComboBoxMes;
-    private javax.swing.JComboBox<String> jComboBoxVeiculo;
+    private javax.swing.JComboBox<String> jComboBoxRelAno;
+    private javax.swing.JComboBox<String> jComboBoxRelMes;
+    private javax.swing.JComboBox<String> jComboBoxRelTipoGasto;
+    private javax.swing.JComboBox<String> jComboBoxRelVeiculo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;

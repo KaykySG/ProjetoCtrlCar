@@ -4,8 +4,15 @@
  */
 package com.VFPK.Visao;
 
-import java.awt.CardLayout;
+import com.VFPK.Modelo.Marca;
+import com.VFPK.Modelo.Modelo;
+import com.VFPK.Persistencia.MarcaDao;
 import java.beans.PropertyVetoException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
@@ -14,6 +21,10 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
  */
 public class TelaVeiculo extends javax.swing.JInternalFrame {
 
+    CadMarca telaMarca = new CadMarca();
+    CadModelo telaModelo = new CadModelo();
+    MarcaDao marcaDao = new MarcaDao();
+    
     /**
      * Creates new form Teste
      * @throws java.beans.PropertyVetoException
@@ -27,7 +38,32 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
 
         
     }
-
+    private void imprimirDadosNaComboBoxMarca(ArrayList<Marca> listaDeMarcas){
+        try{
+        jComboBoxMarca.removeAllItems();
+        Iterator<Marca> lista = listaDeMarcas.iterator();
+        
+        while(lista.hasNext()){
+            Marca aux = lista.next();
+            jComboBoxMarca.addItem(aux.getNome());
+        }
+    }catch(Exception erro){
+                JOptionPane.showMessageDialog(this, erro.getMessage());
+    }
+    }
+    private void imprimirDadosNaComboBoxModelo(ArrayList<Modelo> listaDeModelos){
+        try{
+        jComboBoxModelo.removeAllItems();
+        Iterator<Modelo> lista = listaDeModelos.iterator();
+        
+        while(lista.hasNext()){
+            Modelo aux = lista.next();
+            jComboBoxModelo.addItem(aux.getNome());
+        }
+    }catch(Exception erro){
+                JOptionPane.showMessageDialog(this, erro.getMessage());
+    }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -93,7 +129,6 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
         jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -109,8 +144,6 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
         jTable1.setSelectionBackground(new java.awt.Color(0, 0, 102));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Novo Veículo");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,30 +151,22 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
         jButton2.setText("Editar");
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setForeground(new java.awt.Color(0, 0, 0));
         jButton3.setText("Deletar");
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Marca:");
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Modelo:");
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Placa:");
 
-        jTextFieldPlaca.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldPlaca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldPlacaActionPerformed(evt);
@@ -149,20 +174,16 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Foto do veículo");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("     BUSCAR");
+        jLabel6.setText("    BUSCAR");
         jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Tipo de combustível:");
 
-        jTextFieldPlacaTipoCombustível.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldPlacaTipoCombustível.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldPlacaTipoCombustívelActionPerformed(evt);
@@ -171,18 +192,14 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Quilometragem:");
 
-        jTextFieldQuilometragem.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldQuilometragem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldQuilometragemActionPerformed(evt);
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
-        jButton4.setForeground(new java.awt.Color(0, 0, 0));
         jButton4.setText("Cadastrar marca");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,8 +207,6 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton5.setBackground(new java.awt.Color(255, 255, 255));
-        jButton5.setForeground(new java.awt.Color(0, 0, 0));
         jButton5.setText("Cadastrar modelo");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -199,13 +214,14 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBoxMarca.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBoxMarca.setForeground(new java.awt.Color(0, 0, 0));
         jComboBoxMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxMarca.setFocusable(false);
+        jComboBoxMarca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxMarcaActionPerformed(evt);
+            }
+        });
 
-        jComboBoxModelo.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBoxModelo.setForeground(new java.awt.Color(0, 0, 0));
         jComboBoxModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxModelo.setFocusable(false);
 
@@ -234,7 +250,7 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
                                 .addGap(6, 6, 6)
                                 .addComponent(jButton3))
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -325,16 +341,25 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        CadMarca telaMarca = new CadMarca();
-        
+        telaMarca.dispose();
         telaMarca.setVisible(true);
+    
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        CadModelo telaModelo = new CadModelo();
+        
         telaModelo.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jComboBoxMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMarcaActionPerformed
+        try {
+            // TODO add your handling code here:
+            imprimirDadosNaComboBoxMarca(marcaDao.listar());
+        } catch (Exception erro) {
+            
+        }
+    }//GEN-LAST:event_jComboBoxMarcaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

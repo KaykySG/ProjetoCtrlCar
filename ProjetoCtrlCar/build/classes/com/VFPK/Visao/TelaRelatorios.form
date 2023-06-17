@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
@@ -36,12 +36,12 @@
                           <Group type="102" attributes="0">
                               <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jComboBoxGasto" max="32767" attributes="0"/>
+                              <Component id="jComboBoxRelTipoGasto" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jComboBoxVeiculo" max="32767" attributes="0"/>
+                              <Component id="jComboBoxRelVeiculo" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
@@ -49,12 +49,12 @@
                           <Group type="102" attributes="0">
                               <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jComboBoxAno" min="-2" pref="162" max="-2" attributes="0"/>
+                              <Component id="jComboBoxRelAno" min="-2" pref="162" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jComboBoxMes" max="32767" attributes="0"/>
+                              <Component id="jComboBoxRelMes" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="159" max="-2" attributes="0"/>
@@ -70,16 +70,16 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jComboBoxVeiculo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jComboBoxRelVeiculo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jComboBoxAno" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jComboBoxRelAno" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jComboBoxGasto" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jComboBoxRelTipoGasto" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jComboBoxMes" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jComboBoxRelMes" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jButtonEmitir" min="-2" max="-2" attributes="0"/>
@@ -170,7 +170,7 @@
         <Property name="text" type="java.lang.String" value="Veiculo:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBoxVeiculo">
+    <Component class="javax.swing.JComboBox" name="jComboBoxRelVeiculo">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
@@ -181,6 +181,9 @@
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxRelVeiculoActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -196,7 +199,7 @@
         <Property name="text" type="java.lang.String" value="Tipo de gasto:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBoxGasto">
+    <Component class="javax.swing.JComboBox" name="jComboBoxRelTipoGasto">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
@@ -207,6 +210,9 @@
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxRelTipoGastoActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -222,7 +228,7 @@
         <Property name="text" type="java.lang.String" value="Ano:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBoxAno">
+    <Component class="javax.swing.JComboBox" name="jComboBoxRelAno">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
@@ -248,7 +254,7 @@
         <Property name="text" type="java.lang.String" value="M&#xea;s:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBoxMes">
+    <Component class="javax.swing.JComboBox" name="jComboBoxRelMes">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">

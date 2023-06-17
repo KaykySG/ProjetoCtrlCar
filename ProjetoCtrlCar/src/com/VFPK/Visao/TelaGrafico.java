@@ -4,7 +4,14 @@
  */
 package com.VFPK.Visao;
 
+import com.VFPK.Modelo.TipoDeGastos;
+import com.VFPK.Modelo.Veiculo;
+import com.VFPK.Persistencia.tipoDeGastosDao;
+import com.VFPK.Persistencia.veiculoDao;
 import java.beans.PropertyVetoException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -18,9 +25,37 @@ import org.jfree.data.category.DefaultCategoryDataset;
  */
 public class TelaGrafico extends javax.swing.JInternalFrame {
     public DefaultCategoryDataset barra = new DefaultCategoryDataset();
+    veiculoDao veiculoDao = new veiculoDao();
+    tipoDeGastosDao tipoGastosDao = new tipoDeGastosDao();
     /**
      * Creates new form TelaGrafico
      */
+    private void imprimirDadosNaComboBoxVeiculo(ArrayList<Veiculo> listaDeVeiculos){
+            try{
+        jComboBoxGrafVeiculo.removeAllItems();
+        Iterator<Veiculo> lista = listaDeVeiculos.iterator();
+        
+        while(lista.hasNext()){
+            Veiculo aux = lista.next();
+            jComboBoxGrafVeiculo.addItem(aux.getPlaca());
+        }
+    }catch(Exception erro){
+                JOptionPane.showMessageDialog(this, erro.getMessage());
+    }
+    }
+    private void imprimirDadosNaComboBoxTipoGasto(ArrayList<TipoDeGastos> listaDeTiposDeGasto){
+            try{
+        jComboBoxGrafTipoGasto.removeAllItems();
+        Iterator<TipoDeGastos> lista = listaDeTiposDeGasto.iterator();
+        
+        while(lista.hasNext()){
+            TipoDeGastos aux = lista.next();
+            jComboBoxGrafTipoGasto.addItem(aux.getNomeTipoDeGasto());
+        }
+    }catch(Exception erro){
+                JOptionPane.showMessageDialog(this, erro.getMessage());
+    }
+    }
     public TelaGrafico() throws PropertyVetoException {
         initComponents();
         setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -55,9 +90,9 @@ public class TelaGrafico extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jComboBoxGrafAno = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jComboBoxGrafAno1 = new javax.swing.JComboBox<>();
+        jComboBoxGrafTipoGasto = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        jComboBoxGrafAno2 = new javax.swing.JComboBox<>();
+        jComboBoxGrafMes = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(null);
@@ -104,54 +139,68 @@ public class TelaGrafico extends javax.swing.JInternalFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, -1));
 
-        jComboBoxGrafVeiculo.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBoxGrafVeiculo.setForeground(new java.awt.Color(0, 0, 0));
         jComboBoxGrafVeiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxGrafVeiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxGrafVeiculoActionPerformed(evt);
+            }
+        });
         getContentPane().add(jComboBoxGrafVeiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Veículo:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Ano:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, -1, -1));
 
-        jComboBoxGrafAno.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBoxGrafAno.setForeground(new java.awt.Color(0, 0, 0));
         jComboBoxGrafAno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         getContentPane().add(jComboBoxGrafAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Tipo do gasto:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, -1, -1));
 
-        jComboBoxGrafAno1.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBoxGrafAno1.setForeground(new java.awt.Color(0, 0, 0));
-        jComboBoxGrafAno1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBoxGrafAno1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, -1, -1));
+        jComboBoxGrafTipoGasto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxGrafTipoGasto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxGrafTipoGastoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jComboBoxGrafTipoGasto, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Mês:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, -1, -1));
 
-        jComboBoxGrafAno2.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBoxGrafAno2.setForeground(new java.awt.Color(0, 0, 0));
-        jComboBoxGrafAno2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBoxGrafAno2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, -1, -1));
+        jComboBoxGrafMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(jComboBoxGrafMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jComboBoxGrafVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxGrafVeiculoActionPerformed
+        // TODO add your handling code here:
+        try {
+            imprimirDadosNaComboBoxVeiculo(veiculoDao.listar());
+        } catch (Exception erro) {
+        }
+    }//GEN-LAST:event_jComboBoxGrafVeiculoActionPerformed
+
+    private void jComboBoxGrafTipoGastoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxGrafTipoGastoActionPerformed
+        // TODO add your handling code here:
+        try {
+            imprimirDadosNaComboBoxTipoGasto(tipoGastosDao.listar());
+        } catch (Exception erro) {
+        }
+    }//GEN-LAST:event_jComboBoxGrafTipoGastoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> jComboBoxGrafAno;
-    private javax.swing.JComboBox<String> jComboBoxGrafAno1;
-    private javax.swing.JComboBox<String> jComboBoxGrafAno2;
+    private javax.swing.JComboBox<String> jComboBoxGrafMes;
+    private javax.swing.JComboBox<String> jComboBoxGrafTipoGasto;
     private javax.swing.JComboBox<String> jComboBoxGrafVeiculo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
