@@ -12,19 +12,19 @@ import java.util.Date;
  */
 public class Gasto {
     private int idGasto = 0;
-    private int idVeiculo = 0;
-    private int idTipoDeGasto = 0;
+    private Veiculo veiculo = null;
+    private TipoDeGastos tipodegastos = null;
     private float Valor = 0;
     private Date Data = new Date();
 
     public Gasto() {
     }
     
-    public Gasto(int idGasto, int idVeiculo, int idTipoDeGasto, float Valor, Date Data) {
+    public Gasto(int idGasto,Veiculo veiculo, TipoDeGastos tipodegastos, float Valor, Date Data) {
         
         this.idGasto = idGasto;
-        this.idVeiculo = idVeiculo;
-        this.idTipoDeGasto = idTipoDeGasto;
+        this.veiculo = this.veiculo;
+        this.tipodegastos = this.tipodegastos;
         this.Valor = Valor;
         this.Data = Data;
     }
@@ -35,22 +35,6 @@ public class Gasto {
 
     public void setIdGasto(int idGasto) {
         this.idGasto = idGasto;
-    }
-
-    public int getIdVeiculo() {
-        return idVeiculo;
-    }
-
-    public void setIdVeiculo(int idVeiculo) {
-        this.idVeiculo = idVeiculo;
-    }
-
-    public int getIdTipoDeGasto() {
-        return idTipoDeGasto;
-    }
-
-    public void setIdTipoDeGasto(int idTipoDeGasto) {
-        this.idTipoDeGasto = idTipoDeGasto;
     }
 
     public float getValor() {
@@ -69,9 +53,27 @@ public class Gasto {
         this.Data = Data;
     }
 
+    public Veiculo getIdVeiculo() {
+        return veiculo;
+    }
+
+    public void setIdVeiculo(Veiculo idVeiculo) {
+        this.veiculo = idVeiculo;
+    }
+
+    public TipoDeGastos getIdTipoDeGasto() {
+        return tipodegastos;
+    }
+
+    public void setIdTipoDeGasto(TipoDeGastos idTipoDeGasto) {
+        this.tipodegastos = idTipoDeGasto;
+    }
+    
+    
+
     @Override
     public String toString() {
-        return  idGasto + ";" + idVeiculo+ ";" + idTipoDeGasto+ ";" + Valor+ ";" +  Data;
+        return  idGasto + ";" + veiculo.getPlaca()+ ";" + tipodegastos.getNomeTipoDeGasto()+ ";" + Valor+ ";" +  Data;
     }
     
 }

@@ -10,10 +10,8 @@ package com.VFPK.Modelo;
  */
 public class Veiculo {
     
-    private String Nome = "";
     private String UrlImagem = "";
-    private int idModelo = 0;
-    private int idMarca = 0;
+    private Modelo modelo = null;
     private int idVeiculo = 0;
     private String Placa = "";
     private String Renavam = "";
@@ -23,13 +21,10 @@ public class Veiculo {
     public Veiculo() {
     }
     
-    public Veiculo(String Nome, String UrlImagem,int idModelo, int idMarca, int idVeiculo, String Placa,
+    public Veiculo(String UrlImagem,Modelo modelo, int idMarca, int idVeiculo, String Placa,
                    String Renavam, int AnoVeiculo, int AnoFab) {
         
-         this.Nome = Nome;
          this.UrlImagem = UrlImagem;
-         this.idModelo = idModelo;
-         this.idMarca = idMarca;
          this.idVeiculo = idVeiculo;
          this.Placa = Placa;
          this.Renavam = Renavam;
@@ -37,13 +32,6 @@ public class Veiculo {
          this.AnoFab = AnoFab;
     }
 
-    public String getNome() {
-        return Nome;
-    }
-
-    public void setNome(String Nome) {
-        this.Nome = Nome;
-    }
 
     public String getUrlImagem() {
         return UrlImagem;
@@ -51,22 +39,6 @@ public class Veiculo {
 
     public void setUrlImagem(String UrlImagem) {
         this.UrlImagem = UrlImagem;
-    }
-
-    public int getIdModelo() {
-        return idModelo;
-    }
-
-    public void setIdModelo(int idModelo) {
-        this.idModelo = idModelo;
-    }
-
-    public int getIdMarca() {
-        return idMarca;
-    }
-
-    public void setIdMarca(int idMarca) {
-        this.idMarca = idMarca;
     }
 
     public int getIdVeiculo() {
@@ -109,9 +81,19 @@ public class Veiculo {
         this.AnoFab = AnoFab;
     }
 
+    public Modelo getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(Modelo modelo) {
+        this.modelo = modelo;
+    }
+    
+    
+
     @Override
     public String toString() {
-        return Nome + ";" + UrlImagem + ";" + idModelo + ";" + idMarca + ";" + idVeiculo + ";" +Placa
+        return  UrlImagem + ";" + modelo.getNome() + ";" + modelo.getMarca().getNome() + ";" + idVeiculo + ";" +Placa
                 + ";"+ Renavam + ";" + AnoVeiculo + ";" + AnoFab;
     }
     
