@@ -31,8 +31,9 @@ public class veiculoDao implements iveiculoDao{
                         "    \"anoVeiculo\" integer NOT NULL,\n" +
                         "    \"anoFabricacao\" integer NOT NULL,\n" +
                         "    \"urlimg\" varchar(100) NOT NULL,\n" +
-                        "    \"placa\" varchar(8) NOT NULL,\n" +
-                        "    \"renavam\" varchar(8) NOT NULL,\n" +
+                        "    \"placa\" varchar(10) NOT NULL,\n" +
+                        "    \"renavam\" varchar(10) NOT NULL,\n" +
+                        "    \"status\" varchar(10) NOT NULL,\n" +   
                         "    PRIMARY KEY (\"idveiculo\")\n" +
                         ");");
                 
@@ -63,9 +64,9 @@ public class veiculoDao implements iveiculoDao{
             }else{
 
                 PreparedStatement ps = conexao.prepareStatement(
-                "insert into veiculo (idveiculo, idmodelo, anoVeiculo, anoFabricacao, urlimg, placa, renavam) values ('"+veiculo.getIdVeiculo()+"', '"+veiculo.getModelo().getIdModelo()
-                            +"','"+veiculo.getAnoFab()+"', '"+ veiculo.getAnoVeiculo()+"', '" + veiculo.getUrlImagem() + "', ' "+veiculo.getPlaca() +"', '"
-                            +veiculo.getRenavam()+")");
+                "insert into veiculo (idveiculo, idmodelo, anoVeiculo, anoFabricacao, urlimg, placa, renavam, status) values ('"+veiculo.getIdVeiculo()+"', '"+veiculo.getModelo().getIdModelo()
+                            +"','"+veiculo.getAnoFab()+"', '"+ veiculo.getAnoFab()+"', '" + veiculo.getUrlImagem() + "', ' "+veiculo.getPlaca() +"', '"
+                            +veiculo.getRenavam()+"','"+ veiculo.getStatus() + "';)");
                 ps.executeQuery();
 
             }
@@ -77,25 +78,7 @@ public class veiculoDao implements iveiculoDao{
 
     @Override
     public void alterar(Veiculo veiculo) throws Exception {
-        
-        try {
-            
-                
-                ferramentasPadrao fp = new ferramentasPadrao();
-                Connection conexao = fp.autenticar();
-                verificarExistenciaBD(conexao);
-            
-                PreparedStatement ps = conexao.prepareStatement(
-                "UPDATE veiculo\n" +
-                "SET idmodelo = '"+veiculo.getModelo().getIdModelo()+"', anoVeiculo = '"+veiculo.getAnoVeiculo()+"', anoFabricacao = '"+veiculo.getAnoFab()+"', urlimg = '" + veiculo.getUrlImagem() + "', placa = '"+veiculo.getPlaca()+"', renavam = '"+veiculo.getRenavam()+"';\n" +
-                "WHERE idveiculo = '"+veiculo.getIdVeiculo()+"'; ");
-                ps.executeQuery();
-                
-            
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override

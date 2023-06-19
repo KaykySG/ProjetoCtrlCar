@@ -17,12 +17,13 @@ public class Veiculo {
     private String Renavam = "";
     private int AnoVeiculo = 0;
     private int AnoFab = 0;
+    private String status = "";
 
     public Veiculo() {
     }
     
     public Veiculo(String UrlImagem,Modelo modelo, int idMarca, int idVeiculo, String Placa,
-                   String Renavam, int AnoVeiculo, int AnoFab) {
+                   String Renavam, int AnoVeiculo, int AnoFab ,String status) {
         
          this.UrlImagem = UrlImagem;
          this.idVeiculo = idVeiculo;
@@ -30,6 +31,7 @@ public class Veiculo {
          this.Renavam = Renavam;
          this.AnoVeiculo = AnoVeiculo;
          this.AnoFab = AnoFab;
+         this.status = status;
     }
 
 
@@ -87,6 +89,14 @@ public class Veiculo {
 
     public void setModelo(Modelo modelo) {
         this.modelo = modelo;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
     
     
