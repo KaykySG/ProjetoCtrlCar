@@ -4,9 +4,15 @@
  */
 package com.VFPK.Visao;
 
+import com.VFPK.Modelo.Marca;
+import com.VFPK.Modelo.Modelo;
+import com.VFPK.Persistencia.MarcaDao;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -15,6 +21,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class CadModelo extends javax.swing.JFrame {
 
+    MarcaDao marcaDao = new MarcaDao();
+    
     /**
      * Creates new form CadModelo
      */
@@ -74,6 +82,11 @@ int xx,xy,z = 0;
         jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.setFocusable(false);
+        jComboBox1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBox1MouseClicked(evt);
+            }
+        });
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -106,6 +119,11 @@ int xx,xy,z = 0;
         });
 
         jButton1.setText("OK");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -230,6 +248,44 @@ int xx,xy,z = 0;
             jLabelImagemModelo.setIcon(iconLogo);
     }//GEN-LAST:event_jLabelImagemModeloMouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        MarcaDao marcaDao = new MarcaDao();
+        Modelo modelo = new  Modelo(jTextField1.getText(), jTextFieldURL, 0, jComboBox1.get); //trocar o id
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseClicked
+        // TODO add your handling code here:
+      try {
+            // TODO add your handling code here:
+            jComboBox1.removeAllItems();
+            imprimirDadosNaComboBoxMarca(marcaDao.listar());
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }//GEN-LAST:event_jComboBox1MouseClicked
+
+    
+    
+    //imprimir combobox
+    private void imprimirDadosNaComboBoxMarca(ArrayList<Marca> listaDeMarcas){
+        try{
+        
+        Iterator<Marca> lista = listaDeMarcas.iterator();
+        
+        while(lista.hasNext()){
+            Marca aux = lista.next();
+            jComboBox1.addItem(aux);
+        }
+    }catch(Exception erro){
+                JOptionPane.showMessageDialog(this, erro.getMessage());
+    }
+    }
+    
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */

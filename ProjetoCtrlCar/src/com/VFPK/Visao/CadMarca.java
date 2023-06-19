@@ -4,8 +4,12 @@
  */
 package com.VFPK.Visao;
 
+import com.VFPK.Modelo.Marca;
+import com.VFPK.Persistencia.MarcaDao;
 import java.io.File;
 import java.time.Clock;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -74,6 +78,11 @@ public class CadMarca extends javax.swing.JFrame {
         jTextField1.setBackground(new java.awt.Color(255, 255, 255));
 
         jButton1.setText("OK");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabelImagemMarca.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabelImagemMarca.setForeground(new java.awt.Color(0, 0, 0));
@@ -205,6 +214,19 @@ public class CadMarca extends javax.swing.JFrame {
             jLabelImagemMarca.setIcon(iconLogo);
     }//GEN-LAST:event_jLabelImagemMarcaMouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        try {
+        Marca marca = new Marca(jTextField1.getText(), jTextFieldURL.getText(), 0); //alterar depois id
+        MarcaDao marcaDao = new MarcaDao();
+        this.dispose();
+        marcaDao.adicionar(marca);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+ 
+   
     /**
      * @param args the command line arguments
      */

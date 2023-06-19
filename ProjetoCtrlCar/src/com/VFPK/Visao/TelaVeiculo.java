@@ -6,17 +6,22 @@ package com.VFPK.Visao;
 
 import com.VFPK.Modelo.Marca;
 import com.VFPK.Modelo.Modelo;
+import com.VFPK.Modelo.Veiculo;
 import com.VFPK.Persistencia.MarcaDao;
 import com.VFPK.Persistencia.modeloDao;
+import com.VPFK.ferramentas.JCellRender;
 import java.beans.PropertyVetoException;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -42,9 +47,13 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
 
         
     }
+    
+    
+    
+//metodos de imprimir na comboBox
     private void imprimirDadosNaComboBoxMarca(ArrayList<Marca> listaDeMarcas){
         try{
-        jComboBoxMarca.removeAllItems();
+        
         Iterator<Marca> lista = listaDeMarcas.iterator();
         
         while(lista.hasNext()){
@@ -57,7 +66,7 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
     }
     private void imprimirDadosNaComboBoxModelo(ArrayList<Modelo> listaDeModelos){
         try{
-        jComboBoxModelo.removeAllItems();
+        
         Iterator<Modelo> lista = listaDeModelos.iterator();
         
         while(lista.hasNext()){
@@ -68,6 +77,42 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, erro.getMessage());
     }
     }
+    
+    
+     
+//Metodo de imprimir na grid 
+ 
+ private void imprimirdadosNaGrid(ArrayList<Veiculo> listaDeMarcas){
+     try {
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            JCellRender JtableRenderer = new JCellRender();
+            jTable1.getColumnModel().getColumn(0).setCellRenderer(JtableRenderer);
+
+            //Limpa a tabela 
+            model.setNumRows(0);
+            Iterator<Veiculo> lista = listaDeMarcas.iterator();               
+
+            while (lista.hasNext()) {
+                String[] saida = new String[6];
+                Veiculo aux = lista.next();
+                saida[0] = aux.getUrlImagem();
+                saida[1] = aux.getPlaca();
+                saida[2] = aux.getRenavam();
+                saida[3] = aux.getModelo().getUrlImagem();
+                saida[4] = aux.getAnoFab()+"";
+                saida[5] = aux.getAnoVeiculo()+"";
+                ImageIcon imageVeiculo = new ImageIcon((saida[0]));
+                //Incluir nova linha na Tabela
+                Object[] dados = {imageVeiculo, saida[1], saida[2], saida[3], saida[4],saida[5]};
+                model.addRow(dados);
+                
+            
+         } 
+        } catch(Exception erro){
+            JOptionPane.showMessageDialog(this, erro.getMessage());
+      }     
+    
+ }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -244,22 +289,22 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
         });
         jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 123, -1, -1));
 
-        jComboBoxMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxMarca.setFocusable(false);
-        jComboBoxMarca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxMarcaActionPerformed(evt);
+        jComboBoxMarca.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBoxMarcaMouseClicked(evt);
             }
         });
+        
         jPanel1.add(jComboBoxMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 96, 130, -1));
 
-        jComboBoxModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxModelo.setFocusable(false);
-        jComboBoxModelo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxModeloActionPerformed(evt);
+        jComboBoxModelo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBoxModeloMouseClicked(evt);
             }
         });
+        
         jPanel1.add(jComboBoxModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 96, 130, -1));
         jPanel1.add(jTextFieldURL, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 0, -1));
 
@@ -297,24 +342,6 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
         telaModelo.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jComboBoxMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMarcaActionPerformed
-        try {
-            // TODO add your handling code here:
-            imprimirDadosNaComboBoxMarca(marcaDao.listar());
-        } catch (Exception erro) {
-            
-        }
-    }//GEN-LAST:event_jComboBoxMarcaActionPerformed
-
-    private void jComboBoxModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxModeloActionPerformed
-        // TODO add your handling code here:
-        try{
-        imprimirDadosNaComboBoxModelo(modeloDao.listar());
-        } catch (Exception erro){
-        }
-        
-    }//GEN-LAST:event_jComboBoxModeloActionPerformed
-
     private void jLabelImagemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelImagemMouseClicked
         // TODO add your handling code here:
             JFileChooser fc = new JFileChooser();
@@ -330,6 +357,26 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
             jLabelImagem.setIcon(iconLogo);
         
     }//GEN-LAST:event_jLabelImagemMouseClicked
+
+    private void jComboBoxMarcaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxMarcaMouseClicked
+        try {
+            // TODO add your handling code here:
+            jComboBoxMarca.removeAllItems();
+            imprimirDadosNaComboBoxMarca(marcaDao.listar());
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }//GEN-LAST:event_jComboBoxMarcaMouseClicked
+
+    private void jComboBoxModeloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxModeloMouseClicked
+        try {
+            // TODO add your handling code here:
+            jComboBoxModelo.removeAllItems();
+            imprimirDadosNaComboBoxModelo(modeloDao.listar());
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }//GEN-LAST:event_jComboBoxModeloMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
