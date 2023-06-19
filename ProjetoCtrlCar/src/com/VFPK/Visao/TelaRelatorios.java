@@ -4,8 +4,10 @@
  */
 package com.VFPK.Visao;
 
+import com.VFPK.Modelo.Gasto;
 import com.VFPK.Modelo.TipoDeGastos;
 import com.VFPK.Modelo.Veiculo;
+import com.VFPK.Persistencia.gastosDao;
 import com.VFPK.Persistencia.tipoDeGastosDao;
 import com.VFPK.Persistencia.veiculoDao;
 import java.beans.PropertyVetoException;
@@ -23,6 +25,7 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
 public class TelaRelatorios extends javax.swing.JInternalFrame {
     veiculoDao veiculoDao = new veiculoDao();
     tipoDeGastosDao tipoGastosDao = new tipoDeGastosDao();
+    gastosDao gastosDao = new gastosDao();
     /**
      * Creates new form TelaRelatorios
      */
@@ -55,6 +58,32 @@ public class TelaRelatorios extends javax.swing.JInternalFrame {
         while(lista.hasNext()){
             TipoDeGastos aux = lista.next();
             jComboBoxRelTipoGasto.addItem(aux.getNomeTipoDeGasto());
+        }
+    }catch(Exception erro){
+                JOptionPane.showMessageDialog(this, erro.getMessage());
+    }
+    }
+    private void imprimirDadosNaComboBoxAno(ArrayList<Gasto> listaDeGasto){
+            try{
+        jComboBoxRelAno.removeAllItems();
+        Iterator<Gasto> lista = listaDeGasto.iterator();
+        
+        while(lista.hasNext()){
+            Gasto aux = lista.next();
+            jComboBoxRelAno.addItem(aux.getData().getYear() + "");
+        }
+    }catch(Exception erro){
+                JOptionPane.showMessageDialog(this, erro.getMessage());
+    }
+    }
+    private void imprimirDadosNaComboBoxMes(ArrayList<Gasto> listaDeGasto){
+            try{
+        jComboBoxRelMes.removeAllItems();
+        Iterator<Gasto> lista = listaDeGasto.iterator();
+        
+        while(lista.hasNext()){
+            Gasto aux = lista.next();
+            jComboBoxRelMes.addItem(aux.getData().getMonth() + "");
         }
     }catch(Exception erro){
                 JOptionPane.showMessageDialog(this, erro.getMessage());
@@ -150,12 +179,22 @@ public class TelaRelatorios extends javax.swing.JInternalFrame {
         jLabel8.setText("Ano:");
 
         jComboBoxRelAno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxRelAno.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBoxRelAnoMouseClicked(evt);
+            }
+        });
 
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel9.setText("Mês:");
 
         jComboBoxRelMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxRelMes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBoxRelMesMouseClicked(evt);
+            }
+        });
 
         jButtonEmitir.setText("Emitir");
 
@@ -238,6 +277,26 @@ public class TelaRelatorios extends javax.swing.JInternalFrame {
             
         }
     }//GEN-LAST:event_jComboBoxRelTipoGastoActionPerformed
+
+    private void jComboBoxRelAnoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxRelAnoMouseClicked
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            imprimirDadosNaComboBoxAno(gastosDao.listar());
+        } catch (Exception erro) {
+            
+        }
+    }//GEN-LAST:event_jComboBoxRelAnoMouseClicked
+
+    private void jComboBoxRelMesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxRelMesMouseClicked
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            imprimirDadosNaComboBoxMes(gastosDao.listar());
+        } catch (Exception erro) {
+            
+        }
+    }//GEN-LAST:event_jComboBoxRelMesMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
