@@ -100,11 +100,12 @@ public class Veiculo {
     }
     
     
+    
+    
 
     @Override
     public String toString() {
-        return  UrlImagem + ";" + modelo.getNome() + ";" + modelo.getMarca().getNome() + ";" + idVeiculo + ";" +Placa
-                + ";"+ Renavam + ";" + AnoVeiculo + ";" + AnoFab;
+        return  Placa;
     }
     
     
