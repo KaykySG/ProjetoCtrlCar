@@ -7,16 +7,11 @@ package com.VFPK.Visao;
 import com.VFPK.Modelo.Marca;
 import com.VFPK.Modelo.Modelo;
 import com.VFPK.Persistencia.MarcaDao;
-import java.awt.Component;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -25,7 +20,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author aluno
  */
 public class CadModelo extends javax.swing.JFrame {
-
+    
+    MarcaDao marcaDao = new MarcaDao();  
+    Marca marca = new Marca();
     
     
     
@@ -35,47 +32,10 @@ public class CadModelo extends javax.swing.JFrame {
     public CadModelo() {
         initComponents();
         setLocationRelativeTo(null);
-        
-        MarcaDao marcaDao = new MarcaDao();
-    
-    Marca marca = new Marca();
-    
-    ArrayList<Marca> lista = new ArrayList<>();
-    
-        for (int i = 0; i < 10; i++) {
-            marca.setIdMarca(i);
-            marca.setNome(i+"nome");
-            marca.setUrlImagem(i+"marca");
-            lista.add(marca);
-        }
-        
-        System.out.println(lista);
-        imprimirDadosNaComboBoxMarca(lista);
-        
-        
-        
-        
+     
     }
 int xx,xy,z = 0;
 
-    /*private void loadData() throws Exception{
-        
-    Marca marca = new Marca();
-    jcom<Marca> defaultComboBoxModel = new DefaultComboBoxModel<>();
-    for(Marca marca : marcaDao.listar()){
-        defaultComboBoxModel.add(marca);
-    }
-}*/
-    private class ModeloListCellRenderer extends DefaultListCellRenderer{
-        
-        public Component getListCellRenderer(JList<?> list,Object value, int index, boolean isSelected, boolean cellHasFocus){
-            if (value instanceof Marca) {
-                Marca marca = (Marca) value;
-                value = marca.getIdMarca();
-            }
-            return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-        }
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -303,7 +263,7 @@ int xx,xy,z = 0;
       try {
             // TODO add your handling code here:
             jComboBoxMarca.removeAllItems();
-            //imprimirDadosNaComboBoxMarca(marcaDao.listar());
+            imprimirDadosNaComboBoxMarca(marcaDao.listar());
         } catch (Exception ex) {
             System.out.println(ex);
         }
