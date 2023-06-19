@@ -27,7 +27,7 @@ public class tipoDeGastosDao implements itipoDeGastosDao{
                         "(\n" +
                         "    \"idtipodegasto\" SERIAL,\n" +
                         "    \"nometipodegasto\" varchar(20) NOT NULL UNIQUE,\n" +
-                        "    PRIMARY KEY (\"idmarca\")\n" +
+                        "    PRIMARY KEY (\"idtipodegasto\")\n" +
                         ");");
         ps.executeUpdate();
         
@@ -104,7 +104,7 @@ public class tipoDeGastosDao implements itipoDeGastosDao{
             verificarExistenciaBD(conexao);
             
             PreparedStatement ps = conexao.prepareStatement(
-                "SELECT * FROM tipodegasto WHERE id = '"+tipoDeGastos.getIdTipoDeGasto()+"'");
+                "SELECT * FROM tipodegasto WHERE idtipodegasto = '"+tipoDeGastos.getIdTipoDeGasto()+"'");
             
             ResultSet rs = ps.executeQuery();
             
@@ -138,7 +138,7 @@ public class tipoDeGastosDao implements itipoDeGastosDao{
             verificarExistenciaBD(conexao);
             
             PreparedStatement ps = conexao.prepareStatement(
-                "select * from marca;");
+                "select * from tipodegasto;");
             
             ResultSet rs = ps.executeQuery();
             
