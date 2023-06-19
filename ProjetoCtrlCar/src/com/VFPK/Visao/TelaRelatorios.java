@@ -83,6 +83,8 @@ public class TelaRelatorios extends javax.swing.JInternalFrame {
         jComboBoxRelMes = new javax.swing.JComboBox<>();
         jButtonEmitir = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         jPanel2.setBackground(new java.awt.Color(0, 0, 153));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N

@@ -43,7 +43,6 @@ public class TelaInicial extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabelMinimize = new javax.swing.JLabel();
-        jLabelMaximize = new javax.swing.JLabel();
         jLabelClose = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanelLateral = new javax.swing.JPanel();
@@ -106,19 +105,6 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
 
-        jLabelMaximize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/VFPK/icones/icons8_maximize_window_20px.png"))); // NOI18N
-        jLabelMaximize.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelMaximizeMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabelMaximizeMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabelMaximizeMouseExited(evt);
-            }
-        });
-
         jLabelClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/VFPK/icones/icons8_multiply_20px.png"))); // NOI18N
         jLabelClose.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -145,11 +131,9 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 507, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(210, 210, 210)
+                .addGap(230, 230, 230)
                 .addComponent(jLabelMinimize)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelMaximize)
-                .addGap(0, 0, 0)
                 .addComponent(jLabelClose))
         );
         jPanelGuiaLayout.setVerticalGroup(
@@ -159,7 +143,6 @@ public class TelaInicial extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelGuiaLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabelMinimize))
-                    .addComponent(jLabelMaximize, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabelClose, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanelGuiaLayout.createSequentialGroup()
                         .addGroup(jPanelGuiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -327,19 +310,6 @@ public class TelaInicial extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jLabelCloseMouseClicked
-
-    private void jLabelMaximizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMaximizeMouseClicked
-        // TODO add your handling code here:
-            if (z == 0) {
-                TelaInicial.this.setExtendedState(JFrame.NORMAL);
-                z = 1;
-            }
-            else{  
-                setExtendedState(MAXIMIZED_BOTH);
-                z = 0;
-            }
-        
-    }//GEN-LAST:event_jLabelMaximizeMouseClicked
         
       
     private void jPanelGuiaMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelGuiaMouseDragged
@@ -405,23 +375,11 @@ public class TelaInicial extends javax.swing.JFrame {
         jLabelClose.setIcon(icon);
     }//GEN-LAST:event_jLabelCloseMouseEntered
 
-    private void jLabelMaximizeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMaximizeMouseEntered
-        // TODO add your handling code here:
-        ImageIcon icon = new ImageIcon("./src/com/VFPK/icones/icons8_maximize_window_20px_Select.png");
-        jLabelMaximize.setIcon(icon);
-    }//GEN-LAST:event_jLabelMaximizeMouseEntered
-
     private void jLabelCloseMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCloseMouseExited
         // TODO add your handling code here:
         ImageIcon icon = new ImageIcon("./src/com/VFPK/icones/icons8_multiply_20px.png");
         jLabelClose.setIcon(icon);
     }//GEN-LAST:event_jLabelCloseMouseExited
-
-    private void jLabelMaximizeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMaximizeMouseExited
-        // TODO add your handling code here:
-        ImageIcon icon = new ImageIcon("./src/com/VFPK/icones/icons8_maximize_window_20px.png");
-        jLabelMaximize.setIcon(icon);
-    }//GEN-LAST:event_jLabelMaximizeMouseExited
 
     private void jLabelMinimizeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMinimizeMouseEntered
         // TODO add your handling code here:
@@ -555,7 +513,6 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelClose;
-    private javax.swing.JLabel jLabelMaximize;
     private javax.swing.JLabel jLabelMinimize;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelCore;
