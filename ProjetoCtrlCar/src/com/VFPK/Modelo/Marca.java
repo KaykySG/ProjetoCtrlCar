@@ -50,7 +50,11 @@ public class Marca {
 
     @Override
     public String toString() {
-        return  Nome + ";" + UrlImagem + ";" + idMarca;
+        return  Nome;
+    }
+
+    public Iterable<Marca> findAll() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
      
     
