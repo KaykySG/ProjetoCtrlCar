@@ -40,7 +40,7 @@ public class TipoDeGastos {
 
     @Override
     public String toString() {
-     return idTipoDeGasto + ";" + NomeTipoDeGasto;
+     return NomeTipoDeGasto;
      }
      
 }

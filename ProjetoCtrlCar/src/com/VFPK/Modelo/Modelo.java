@@ -63,6 +63,6 @@ public class Modelo {
 
     @Override
     public String toString() {
-        return Nome + ";" + UrlImagem + ";" + idModelo + ";" + marca.getNome();
+        return Nome;
     }
 }
