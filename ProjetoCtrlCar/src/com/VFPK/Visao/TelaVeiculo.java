@@ -38,12 +38,14 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
      * Creates new form Teste
      * @throws java.beans.PropertyVetoException
      */
-    public TelaVeiculo() throws PropertyVetoException {
+    public TelaVeiculo() throws PropertyVetoException, Exception {
         initComponents();
         setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
         bi.setNorthPane(null);
         setMaximum(true);
+        imprimirDadosNaComboBoxModelo(modeloDao.listar());
+        imprimirDadosNaComboBoxMarca(marcaDao.listar());
 
         
     }

@@ -7,6 +7,7 @@ package com.VFPK.Visao;
 import com.VFPK.Modelo.Marca;
 import com.VFPK.Modelo.Modelo;
 import com.VFPK.Persistencia.MarcaDao;
+import com.VFPK.Persistencia.imarcaDao;
 import com.VFPK.Persistencia.modeloDao;
 import java.io.File;
 import java.util.ArrayList;
@@ -33,6 +34,13 @@ public class CadModelo extends javax.swing.JFrame {
     public CadModelo() {
         initComponents();
         setLocationRelativeTo(null);
+        
+        imarcaDao marDao = new MarcaDao();
+        try {
+            imprimirDadosNaComboBoxMarca(marDao.listar());
+        } catch (Exception e) {
+        }
+        
      
     }
 int xx,xy,z = 0;
@@ -259,6 +267,9 @@ int xx,xy,z = 0;
         MarcaDao marcaDao = new MarcaDao();
         modeloDao modeloDao = new modeloDao();
         Modelo modelo = new Modelo(jTextField1.getText(), jTextFieldURL.getText(), 0, (Marca) jComboBoxMarca.getSelectedItem());
+        
+        modeloDao.adicionar(modelo);
+        this.dispose();
         }catch (Exception erro){
                 System.out.println(erro);
                 
