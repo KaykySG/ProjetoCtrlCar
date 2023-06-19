@@ -33,6 +33,7 @@ public class TelaRelatorios extends javax.swing.JInternalFrame {
         bi.setNorthPane(null);
         setMaximum(true);
     }
+    
     private void imprimirDadosNaComboBoxVeiculo(ArrayList<Veiculo> listaDeVeiculos){
             try{
         jComboBoxRelVeiculo.removeAllItems();

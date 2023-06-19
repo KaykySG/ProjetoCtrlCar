@@ -175,6 +175,7 @@ public class TelaGastos extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
     private void imprimirDadosNaComboBoxVeiculo(ArrayList<Veiculo> listaDeVeiculos){
             try{
         jComboBoxGastoVeiculo.removeAllItems();

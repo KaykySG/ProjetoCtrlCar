@@ -9,9 +9,13 @@ import com.VFPK.Modelo.Modelo;
 import com.VFPK.Persistencia.MarcaDao;
 import com.VFPK.Persistencia.modeloDao;
 import java.beans.PropertyVetoException;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
@@ -86,7 +90,7 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jTextFieldPlaca = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jLabelImagem = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jTextFieldPlacaTipoCombustível = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -95,6 +99,7 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
         jButton5 = new javax.swing.JButton();
         jComboBoxMarca = new javax.swing.JComboBox<>();
         jComboBoxModelo = new javax.swing.JComboBox<>();
+        jTextFieldURL = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(null);
@@ -189,10 +194,15 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
         jLabel5.setText("Foto do veículo");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 158, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setText("     BUSCAR");
-        jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 180, 100, 80));
+        jLabelImagem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabelImagem.setText("     BUSCAR");
+        jLabelImagem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabelImagem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelImagemMouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabelImagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 180, 100, 80));
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -251,6 +261,7 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(jComboBoxModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 96, 130, -1));
+        jPanel1.add(jTextFieldURL, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 0, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -304,6 +315,22 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jComboBoxModeloActionPerformed
 
+    private void jLabelImagemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelImagemMouseClicked
+        // TODO add your handling code here:
+            JFileChooser fc = new JFileChooser();
+            fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagem", "jpg", "png", "jpeg");
+            fc.setFileFilter(filter);
+            fc.showOpenDialog(this);
+            File arquivo = fc.getSelectedFile();
+            String nomeDoArquivo = arquivo.getPath();
+            jTextFieldURL.setText(nomeDoArquivo);
+            ImageIcon iconLogo = new ImageIcon(nomeDoArquivo);
+            iconLogo.setImage(iconLogo.getImage().getScaledInstance(jLabelImagem.getWidth(), jLabelImagem.getHeight(),1));
+            jLabelImagem.setIcon(iconLogo);
+        
+    }//GEN-LAST:event_jLabelImagemMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -318,9 +345,9 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabelImagem;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -328,5 +355,6 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextFieldPlaca;
     private javax.swing.JTextField jTextFieldPlacaTipoCombustível;
     private javax.swing.JTextField jTextFieldQuilometragem;
+    private javax.swing.JTextField jTextFieldURL;
     // End of variables declaration//GEN-END:variables
 }
