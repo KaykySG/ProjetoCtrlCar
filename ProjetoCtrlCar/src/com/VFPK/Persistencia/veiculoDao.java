@@ -64,7 +64,7 @@ public class veiculoDao implements iveiculoDao{
 
                 PreparedStatement ps = conexao.prepareStatement(
                 "insert into veiculo (idveiculo, idmodelo, anoVeiculo, anoFabricacao, urlimg, placa, renavam) values ('"+veiculo.getIdVeiculo()+"', '"+veiculo.getModelo().getIdModelo()
-                            +"','"+veiculo.getAnoFab()+"', '"+ veiculo.getAnoFab()+"', '" + veiculo.getUrlImagem() + "', ' "+veiculo.getPlaca() +"', '"
+                            +"','"+veiculo.getAnoFab()+"', '"+ veiculo.getAnoVeiculo()+"', '" + veiculo.getUrlImagem() + "', ' "+veiculo.getPlaca() +"', '"
                             +veiculo.getRenavam()+")");
                 ps.executeQuery();
 
@@ -77,7 +77,25 @@ public class veiculoDao implements iveiculoDao{
 
     @Override
     public void alterar(Veiculo veiculo) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
+        try {
+            
+                
+                ferramentasPadrao fp = new ferramentasPadrao();
+                Connection conexao = fp.autenticar();
+                verificarExistenciaBD(conexao);
+            
+                PreparedStatement ps = conexao.prepareStatement(
+                "UPDATE veiculo\n" +
+                "SET idmodelo = '"+veiculo.getModelo().getIdModelo()+"', anoVeiculo = '"+veiculo.getAnoVeiculo()+"', anoFabricacao = '"+veiculo.getAnoFab()+"', urlimg = '" + veiculo.getUrlImagem() + "', placa = '"+veiculo.getPlaca()+"', renavam = '"+veiculo.getRenavam()+"';\n" +
+                "WHERE idveiculo = '"+veiculo.getIdVeiculo()+"'; ");
+                ps.executeQuery();
+                
+            
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        
     }
 
     @Override
@@ -129,7 +147,7 @@ public class veiculoDao implements iveiculoDao{
             verificarExistenciaBD(conexao);
             
             PreparedStatement ps = conexao.prepareStatement(
-                "select * from marca;");
+                "select * from veiculo;");
             
             ResultSet rs = ps.executeQuery();
             

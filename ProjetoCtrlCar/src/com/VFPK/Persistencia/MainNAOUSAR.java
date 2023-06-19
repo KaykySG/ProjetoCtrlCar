@@ -3,9 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.VFPK.Persistencia;
+import com.VFPK.Modelo.Gasto;
 import com.VFPK.Persistencia.imarcaDao;
 import com.VFPK.Modelo.Marca;
 import com.VFPK.Modelo.Modelo;
+import com.VFPK.Modelo.TipoDeGastos;
+import com.VFPK.Modelo.Veiculo;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -19,29 +22,34 @@ public class MainNAOUSAR {
         
         imarcaDao mc = new MarcaDao();
         imodeloDao mod = new modeloDao();
+        iveiculoDao ivc = new veiculoDao();
+        itipoDeGastosDao ipg = new tipoDeGastosDao();
+        igastosDao igd = new gastosDao();
+        
         
         try {
             
             
             Marca marca = new Marca();
-            marca.setNome("nome");
-            marca.setIdMarca(4);
-            marca.setUrlImagem("url");
+            Modelo modelo = new Modelo();
+            Veiculo veiculo = new Veiculo();
+            TipoDeGastos tipodegasto = new TipoDeGastos();
+            Gasto gasto = new Gasto();
+            
             mc.adicionar(marca);
+            mod.adicionar(modelo);
+            ivc.adicionar(veiculo);
+            ipg.adicionar(tipodegasto);
+            igd.adicionar(gasto);
             
-            marca.setNome("nomealterado");
-            marca.setIdMarca(1);
-            marca.setUrlImagem("urlalterado");
-            mc.alterar(marca);
             
-            ArrayList<Marca> lista = mc.listar();
-            Iterator listaIte = lista.iterator();
             
-            for (Iterator<Marca> iterator = lista.iterator(); iterator.hasNext();) {
+            
+            /*for (Iterator<Marca> iterator = lista.iterator(); iterator.hasNext();) {
                 Marca next = iterator.next();
                 System.out.println(next.getNome());
                 
-            }
+            }*/
             
             
             //marca = mc.buscar("nome");
@@ -51,7 +59,7 @@ public class MainNAOUSAR {
             System.out.println(marca.getUrlImagem());
             
         
-            Modelo modelo = new Modelo();
+            //Modelo modelo = new Modelo();
             //Marca marca = new Marca();
             modelo.setMarca(mc.buscar(1));
             modelo.setIdModelo(1);

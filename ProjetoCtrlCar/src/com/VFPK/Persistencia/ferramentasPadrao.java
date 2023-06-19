@@ -4,12 +4,6 @@
  */
 package com.VFPK.Persistencia;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 /**
@@ -32,7 +26,7 @@ public class ferramentasPadrao {
                 String driver = "org.postgresql.Driver";
                 String url = "jdbc:postgresql://localhost:5432/DBVFPK";
                 String user = "postgres";
-                String password = "admin";
+                String password = "aluno";
                 Class.forName(driver);
                 conexao = DriverManager.getConnection(url, user, password);
                 System.out.println("Conectado no banco de dados com sucesso");
