@@ -7,11 +7,16 @@ package com.VFPK.Visao;
 import com.VFPK.Modelo.Marca;
 import com.VFPK.Modelo.Modelo;
 import com.VFPK.Persistencia.MarcaDao;
+import java.awt.Component;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -21,7 +26,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class CadModelo extends javax.swing.JFrame {
 
-    MarcaDao marcaDao = new MarcaDao();
+    
+    
     
     /**
      * Creates new form CadModelo
@@ -29,8 +35,47 @@ public class CadModelo extends javax.swing.JFrame {
     public CadModelo() {
         initComponents();
         setLocationRelativeTo(null);
+        
+        MarcaDao marcaDao = new MarcaDao();
+    
+    Marca marca = new Marca();
+    
+    ArrayList<Marca> lista = new ArrayList<>();
+    
+        for (int i = 0; i < 10; i++) {
+            marca.setIdMarca(i);
+            marca.setNome(i+"nome");
+            marca.setUrlImagem(i+"marca");
+            lista.add(marca);
+        }
+        
+        System.out.println(lista);
+        imprimirDadosNaComboBoxMarca(lista);
+        
+        
+        
+        
     }
 int xx,xy,z = 0;
+
+    /*private void loadData() throws Exception{
+        
+    Marca marca = new Marca();
+    jcom<Marca> defaultComboBoxModel = new DefaultComboBoxModel<>();
+    for(Marca marca : marcaDao.listar()){
+        defaultComboBoxModel.add(marca);
+    }
+}*/
+    private class ModeloListCellRenderer extends DefaultListCellRenderer{
+        
+        public Component getListCellRenderer(JList<?> list,Object value, int index, boolean isSelected, boolean cellHasFocus){
+            if (value instanceof Marca) {
+                Marca marca = (Marca) value;
+                value = marca.getIdMarca();
+            }
+            return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,7 +89,7 @@ int xx,xy,z = 0;
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBoxMarca = new javax.swing.JComboBox<Marca>();
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -79,17 +124,16 @@ int xx,xy,z = 0;
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Nome do modelo:");
 
-        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setFocusable(false);
-        jComboBox1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jComboBoxMarca.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBoxMarca.setFocusable(false);
+        jComboBoxMarca.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jComboBox1MouseClicked(evt);
+                jComboBoxMarcaMouseClicked(evt);
             }
         });
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        jComboBoxMarca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                jComboBoxMarcaActionPerformed(evt);
             }
         });
 
@@ -161,7 +205,7 @@ int xx,xy,z = 0;
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jComboBoxMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(41, 41, 41))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -177,7 +221,7 @@ int xx,xy,z = 0;
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jComboBoxMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -211,9 +255,9 @@ int xx,xy,z = 0;
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void jComboBoxMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMarcaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_jComboBoxMarcaActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -251,19 +295,19 @@ int xx,xy,z = 0;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         MarcaDao marcaDao = new MarcaDao();
-        Modelo modelo = new  Modelo(jTextField1.getText(), jTextFieldURL, 0, jComboBox1.get); //trocar o id
+        //Modelo modelo = new  Modelo(jTextField1.getText(), jTextFieldURL, 0, jComboBoxMa); //trocar o id
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseClicked
+    private void jComboBoxMarcaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxMarcaMouseClicked
         // TODO add your handling code here:
       try {
             // TODO add your handling code here:
-            jComboBox1.removeAllItems();
-            imprimirDadosNaComboBoxMarca(marcaDao.listar());
+            jComboBoxMarca.removeAllItems();
+            //imprimirDadosNaComboBoxMarca(marcaDao.listar());
         } catch (Exception ex) {
             System.out.println(ex);
         }
-    }//GEN-LAST:event_jComboBox1MouseClicked
+    }//GEN-LAST:event_jComboBoxMarcaMouseClicked
 
     
     
@@ -275,7 +319,7 @@ int xx,xy,z = 0;
         
         while(lista.hasNext()){
             Marca aux = lista.next();
-            jComboBox1.addItem(aux);
+            jComboBoxMarca.addItem(aux);
         }
     }catch(Exception erro){
                 JOptionPane.showMessageDialog(this, erro.getMessage());
@@ -324,7 +368,7 @@ int xx,xy,z = 0;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<Marca> jComboBoxMarca;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
