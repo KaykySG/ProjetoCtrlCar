@@ -136,7 +136,7 @@ public class modeloDao implements imodeloDao{
             verificarExistenciaBD(conexao);
             
             PreparedStatement ps = conexao.prepareStatement(
-                "select * from marca;");
+                "select * from modelo;");
             
             ResultSet rs = ps.executeQuery();
             

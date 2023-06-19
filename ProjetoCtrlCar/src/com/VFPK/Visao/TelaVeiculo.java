@@ -73,7 +73,7 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
         
         while(lista.hasNext()){
             Modelo aux = lista.next();
-            jComboBoxModelo.addItem(aux.getNome());
+            jComboBoxModelo.addItem(aux);
         }
     }catch(Exception erro){
                 JOptionPane.showMessageDialog(this, erro.getMessage());
@@ -279,6 +279,7 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
                 jComboBoxMarcaMouseClicked(evt);
             }
         });
+        
 
         jComboBoxModelo.setFocusable(false);
         jComboBoxModelo.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -286,6 +287,7 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
                 jComboBoxModeloMouseClicked(evt);
             }
         });
+        
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -486,7 +488,7 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBoxMarca;
-    private javax.swing.JComboBox<String> jComboBoxModelo;
+    private javax.swing.JComboBox<Modelo> jComboBoxModelo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
