@@ -7,6 +7,7 @@ package com.VFPK.Visao;
 import com.VFPK.Modelo.Marca;
 import com.VFPK.Modelo.Modelo;
 import com.VFPK.Persistencia.MarcaDao;
+import com.VFPK.Persistencia.modeloDao;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -254,8 +255,16 @@ int xx,xy,z = 0;
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        try{
         MarcaDao marcaDao = new MarcaDao();
-        //Modelo modelo = new  Modelo(jTextField1.getText(), jTextFieldURL, 0, jComboBoxMa); //trocar o id
+        modeloDao modeloDao = new modeloDao();
+        Modelo modelo = new Modelo(jTextField1.getText(), jTextFieldURL.getText(), 0, (Marca) jComboBoxMarca.getSelectedItem());
+        }catch (Exception erro){
+                System.out.println(erro);
+                
+                
+                }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBoxMarcaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxMarcaMouseClicked
