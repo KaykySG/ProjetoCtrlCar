@@ -4,8 +4,10 @@
  */
 package com.VFPK.Visao;
 
+import com.VFPK.Modelo.Gasto;
 import com.VFPK.Modelo.TipoDeGastos;
 import com.VFPK.Modelo.Veiculo;
+import com.VFPK.Persistencia.gastosDao;
 import com.VFPK.Persistencia.tipoDeGastosDao;
 import com.VFPK.Persistencia.veiculoDao;
 import java.beans.PropertyVetoException;
@@ -27,6 +29,7 @@ public class TelaGrafico extends javax.swing.JInternalFrame {
     public DefaultCategoryDataset barra = new DefaultCategoryDataset();
     veiculoDao veiculoDao = new veiculoDao();
     tipoDeGastosDao tipoGastosDao = new tipoDeGastosDao();
+    gastosDao gastosDao = new gastosDao();
     /**
      * Creates new form TelaGrafico
      */
@@ -56,6 +59,33 @@ public class TelaGrafico extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, erro.getMessage());
     }
     }
+    private void imprimirDadosNaComboBoxAno(ArrayList<Gasto> listaDeGasto){
+            try{
+        jComboBoxGrafAno.removeAllItems();
+        Iterator<Gasto> lista = listaDeGasto.iterator();
+        
+        while(lista.hasNext()){
+            Gasto aux = lista.next();
+            jComboBoxGrafAno.addItem(aux.getData().getYear() + "");
+        }
+    }catch(Exception erro){
+                JOptionPane.showMessageDialog(this, erro.getMessage());
+    }
+    }
+    private void imprimirDadosNaComboBoxMes(ArrayList<Gasto> listaDeGasto){
+            try{
+        jComboBoxGrafMes.removeAllItems();
+        Iterator<Gasto> lista = listaDeGasto.iterator();
+        
+        while(lista.hasNext()){
+            Gasto aux = lista.next();
+            jComboBoxGrafMes.addItem(aux.getData().getMonth() + "");
+        }
+    }catch(Exception erro){
+                JOptionPane.showMessageDialog(this, erro.getMessage());
+    }
+    }
+    
     public TelaGrafico() throws PropertyVetoException {
         initComponents();
         setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -156,6 +186,11 @@ public class TelaGrafico extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, -1, -1));
 
         jComboBoxGrafAno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxGrafAno.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBoxGrafAnoMouseClicked(evt);
+            }
+        });
         getContentPane().add(jComboBoxGrafAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -175,6 +210,11 @@ public class TelaGrafico extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, -1, -1));
 
         jComboBoxGrafMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxGrafMes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBoxGrafMesMouseClicked(evt);
+            }
+        });
         getContentPane().add(jComboBoxGrafMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, -1, -1));
 
         pack();
@@ -195,6 +235,22 @@ public class TelaGrafico extends javax.swing.JInternalFrame {
         } catch (Exception erro) {
         }
     }//GEN-LAST:event_jComboBoxGrafTipoGastoActionPerformed
+
+    private void jComboBoxGrafAnoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxGrafAnoMouseClicked
+        // TODO add your handling code here:
+        try {
+            imprimirDadosNaComboBoxAno(gastosDao.listar());
+        } catch (Exception erro) {
+        }
+    }//GEN-LAST:event_jComboBoxGrafAnoMouseClicked
+
+    private void jComboBoxGrafMesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxGrafMesMouseClicked
+        // TODO add your handling code here:
+        try {
+            imprimirDadosNaComboBoxMes(gastosDao.listar());
+        } catch (Exception erro) {
+        }
+    }//GEN-LAST:event_jComboBoxGrafMesMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
