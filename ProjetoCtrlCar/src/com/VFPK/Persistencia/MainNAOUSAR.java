@@ -21,7 +21,7 @@ public class MainNAOUSAR {
         imodeloDao mod = new modeloDao();
         
         try {
-            /*
+            
             
             Marca marca = new Marca();
             marca.setNome("nome");
@@ -44,15 +44,15 @@ public class MainNAOUSAR {
             }
             
             
-            marca = mc.buscar("nome");
+            //marca = mc.buscar("nome");
             
             System.out.println(marca.getIdMarca());
             System.out.println(marca.getNome());
             System.out.println(marca.getUrlImagem());
-            */
+            
         
             Modelo modelo = new Modelo();
-            Marca marca = new Marca();
+            //Marca marca = new Marca();
             modelo.setMarca(mc.buscar(1));
             modelo.setIdModelo(1);
             modelo.setNome("testenome");
