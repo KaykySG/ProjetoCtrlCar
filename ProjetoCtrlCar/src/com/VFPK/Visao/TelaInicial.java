@@ -405,6 +405,8 @@ public class TelaInicial extends javax.swing.JFrame {
             abrirVeiculo.setVisible(true);
         } catch (PropertyVetoException ex) {
             Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jPanelVeiculosMouseClicked
 
@@ -421,6 +423,8 @@ public class TelaInicial extends javax.swing.JFrame {
             abrirRelatorio.dispose();
             abrirVeiculo.dispose();
         } catch (PropertyVetoException ex) {
+            Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
             Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jPanelGraficoMouseClicked
@@ -440,6 +444,8 @@ public class TelaInicial extends javax.swing.JFrame {
         } catch (PropertyVetoException ex) {
             Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
 
+        } catch (Exception ex) {
+            Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jPanelGastosMouseClicked
 
@@ -458,6 +464,8 @@ public class TelaInicial extends javax.swing.JFrame {
         } catch (PropertyVetoException ex) {
            Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
 
+        } catch (Exception ex) {
+            Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_jPanelRelatoriosMouseClicked
