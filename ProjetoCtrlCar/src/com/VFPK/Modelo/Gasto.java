@@ -23,8 +23,8 @@ public class Gasto {
     public Gasto(int idGasto,Veiculo veiculo, TipoDeGastos tipodegastos, float Valor, Date Data) {
         
         this.idGasto = idGasto;
-        this.veiculo = this.veiculo;
-        this.tipodegastos = this.tipodegastos;
+        this.veiculo = veiculo;
+        this.tipodegastos = tipodegastos;
         this.Valor = Valor;
         this.Data = Data;
     }
@@ -53,19 +53,19 @@ public class Gasto {
         this.Data = Data;
     }
 
-    public Veiculo getIdVeiculo() {
+    public Veiculo getVeiculo() {
         return veiculo;
     }
 
-    public void setIdVeiculo(Veiculo idVeiculo) {
+    public void setVeiculo(Veiculo idVeiculo) {
         this.veiculo = idVeiculo;
     }
 
-    public TipoDeGastos getIdTipoDeGasto() {
+    public TipoDeGastos getTipoDeGasto() {
         return tipodegastos;
     }
 
-    public void setIdTipoDeGasto(TipoDeGastos idTipoDeGasto) {
+    public void setTipoDeGasto(TipoDeGastos idTipoDeGasto) {
         this.tipodegastos = idTipoDeGasto;
     }
     

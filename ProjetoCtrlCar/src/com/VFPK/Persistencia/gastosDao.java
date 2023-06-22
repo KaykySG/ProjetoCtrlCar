@@ -27,7 +27,7 @@ public class gastosDao implements igastosDao{
                         "(\n" +
                         "    \"idgastos\" SERIAL,\n" +
                         "    \"idveiculo\" integer NOT NULL,\n" +
-                        "    \"idtipodegasto\" integer NOT NULL,\n" +
+                        "    \"idtipodegastos\" integer NOT NULL,\n" +
                         "    \"valor\" float(2) NOT NULL,\n" +
                         "    \"data\" varchar(100) NOT NULL,\n" +        
                         "    PRIMARY KEY (\"idgastos\")\n" +
@@ -52,21 +52,21 @@ public class gastosDao implements igastosDao{
         
         try { 
         
+            System.out.println("aqui é o valor do id tipo: "+gasto.getTipoDeGasto().getIdTipoDeGasto());
+            
             ferramentasPadrao fp = new ferramentasPadrao();
             Connection conexao = fp.autenticar();
             verificarExistenciaBD(conexao);
             
-            if (true) {
+         
                 
-            }else{
-                
-                String statement = "insert into gastos(idgastos, idtipodegastos, idveiculo, valor, data) values ('" + gasto.getIdGasto() + "','" + gasto.getIdTipoDeGasto() + "','" + gasto.getIdVeiculo() + "' , '" + gasto.getValor() + "' , '" + gasto.getData() + "')";
+                String statement = "insert into gastos(idgastos, idtipodegastos, idveiculo, valor, data) values ('" + gasto.getIdGasto() + "','" + gasto.getTipoDeGasto().getIdTipoDeGasto() + "','" + gasto.getVeiculo().getIdVeiculo()+ "' , '" + gasto.getValor() + "' , '" + gasto.getData() + "')";
                 
                 PreparedStatement ps = conexao.prepareStatement(statement);
                 
                 ps.executeQuery();
 
-            }
+            
         
         } catch (Exception e) {
             System.err.println(e);
@@ -121,7 +121,7 @@ public class gastosDao implements igastosDao{
             
                 PreparedStatement ps = conexao.prepareStatement(
                 "UPDATE gasto\n" +
-                "SET idtipodegasto = '"+ gasto.getIdTipoDeGasto().getIdTipoDeGasto()+"', idveiculo = '"+gasto.getIdVeiculo()+"', valor = '"+gasto.getValor()+"', data = '"+gasto.getData()+"'\n" +
+                "SET idtipodegasto = '"+ gasto.getTipoDeGasto().getIdTipoDeGasto()+"', idveiculo = '"+gasto.getVeiculo().getIdVeiculo()+"', valor = '"+gasto.getValor()+"', data = '"+gasto.getData()+"'\n" +
                 "WHERE idgasto = '"+gasto.getIdGasto()+"'; ");
                 ps.executeQuery();
                 
@@ -156,8 +156,8 @@ public class gastosDao implements igastosDao{
                 
                 gasto.setData(ps.getResultSet().getDate("data"));
                 gasto.setIdGasto(ps.getResultSet().getInt("idgasto"));
-                gasto.setIdTipoDeGasto(tipodegastosdao.buscar(ps.getResultSet().getInt("idtipodegasto")));
-                gasto.setIdVeiculo(veiculodao.buscar(ps.getResultSet().getInt("idveiculo")));
+                gasto.setTipoDeGasto(tipodegastosdao.buscar(ps.getResultSet().getInt("idtipodegasto")));
+                gasto.setVeiculo(veiculodao.buscar(ps.getResultSet().getInt("idveiculo")));
                 gasto.setValor(ps.getResultSet().getInt("valor"));
                 
                 lista.add(gasto);

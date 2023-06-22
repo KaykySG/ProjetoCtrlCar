@@ -22,7 +22,7 @@ public class Veiculo {
     public Veiculo() {
     }
     
-    public Veiculo(String UrlImagem,Modelo modelo, int idMarca, int idVeiculo, String Placa,
+    public Veiculo(String UrlImagem,Modelo modelo, int idVeiculo, String Placa,
                    String Renavam, int AnoVeiculo, int AnoFab ,String status) {
         
          this.UrlImagem = UrlImagem;
@@ -32,6 +32,7 @@ public class Veiculo {
          this.AnoVeiculo = AnoVeiculo;
          this.AnoFab = AnoFab;
          this.status = status;
+         this.modelo = modelo;
     }
 
 

@@ -28,11 +28,11 @@ public class veiculoDao implements iveiculoDao{
                         "(\n" +
                         "    \"idveiculo\" SERIAL,\n" +
                         "    \"idmodelo\" integer NOT NULL,\n" +
-                        "    \"anoVeiculo\" integer NOT NULL,\n" +
-                        "    \"anoFabricacao\" integer NOT NULL,\n" +
+                        "    \"anoveiculo\" integer NOT NULL,\n" +
+                        "    \"anofabricacao\" integer NOT NULL,\n" +
                         "    \"urlimg\" varchar(100) NOT NULL,\n" +
                         "    \"placa\" varchar(10) NOT NULL,\n" +
-                        "    \"renavam\" varchar(10) NOT NULL,\n" +
+                        "    \"renavam\" varchar(11) NOT NULL,\n" +
                         "    \"status\" varchar(10) NOT NULL,\n" +   
                         "    PRIMARY KEY (\"idveiculo\")\n" +
                         ");");
@@ -55,21 +55,30 @@ public class veiculoDao implements iveiculoDao{
     public void adicionar(Veiculo veiculo) throws Exception {
         try { 
         
-            ferramentasPadrao fp = new ferramentasPadrao();
+            
+            
+            
+                ferramentasPadrao fp = new ferramentasPadrao();
             Connection conexao = fp.autenticar();
             verificarExistenciaBD(conexao);
-            
-            if (!buscar(veiculo.getIdVeiculo()).getPlaca().equals(veiculo.getPlaca())) {
                 
-            }else{
+                
+                
+      String sql = "insert into veiculo (idveiculo, idmodelo, anoveiculo, anofabricacao, urlimg, placa, renavam, status) values (?,?,?,?,?,?,?,?)";
+      PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+      // Parameters iniciar os elementos
+      preparedStatement.setInt(1, veiculo.getIdVeiculo());
+      preparedStatement.setInt(2, veiculo.getModelo().getIdModelo());
+      preparedStatement.setInt(3, veiculo.getAnoVeiculo());
+      preparedStatement.setInt(4, veiculo.getAnoFab());          
+      preparedStatement.setString(5, veiculo.getUrlImagem());          
+      preparedStatement.setString(6, veiculo.getPlaca());          
+      preparedStatement.setString(7, veiculo.getRenavam());
+      preparedStatement.setString(8, veiculo.getStatus());
+      
+      preparedStatement.executeUpdate();
 
-                PreparedStatement ps = conexao.prepareStatement(
-                "insert into veiculo (idveiculo, idmodelo, anoVeiculo, anoFabricacao, urlimg, placa, renavam, status) values ('"+veiculo.getIdVeiculo()+"', '"+veiculo.getModelo().getIdModelo()
-                            +"','"+veiculo.getAnoFab()+"', '"+ veiculo.getAnoFab()+"', '" + veiculo.getUrlImagem() + "', ' "+veiculo.getPlaca() +"', '"
-                            +veiculo.getRenavam()+"','"+ veiculo.getStatus() + "';)");
-                ps.executeQuery();
-
-            }
+            
         
         } catch (Exception e) {
             System.err.println(e);

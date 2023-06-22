@@ -4,34 +4,64 @@
  */
 package com.VFPK.Visao;
 
+import com.VFPK.Modelo.Gasto;
 import com.VFPK.Modelo.TipoDeGastos;
 import com.VFPK.Modelo.Veiculo;
+import com.VFPK.Persistencia.gastosDao;
 import com.VFPK.Persistencia.tipoDeGastosDao;
 import com.VFPK.Persistencia.veiculoDao;
 import java.beans.PropertyVetoException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static javax.print.attribute.Size2DSyntax.MM;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.text.MaskFormatter;
 
 /**
  *
  * @author viniciusfs.senai
  */
 public class TelaGastos extends javax.swing.JInternalFrame {
-
+    
     /**
      * Creates new form TelaGastos
      */
-    public TelaGastos() throws PropertyVetoException {
+    
+    
+    CadTipoDeGasto telaTipoDeGastos = new CadTipoDeGasto();
+    
+    
+    public TelaGastos() throws PropertyVetoException, Exception {
         initComponents();
         setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
         bi.setNorthPane(null);
         setMaximum(true);
+        imprimirDadosNaComboBoxVeiculo(veiculoDao.listar());
+        imprimirDadosNaComboBoxTipoGasto(tipoDeGastosDao.listar());
+        
     }
     veiculoDao veiculoDao = new veiculoDao();
     tipoDeGastosDao tipoDeGastosDao = new tipoDeGastosDao();
+    
+    public class ConversorDateToString {
+        Date dataAtual = new Date();
+        String dataRecebida = jTextFieldData.getText();
+        DateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        public ConversorDateToString() throws ParseException {
+            Date dataFormatada = formato.parse(dataRecebida);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -50,9 +80,11 @@ public class TelaGastos extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         jTextFieldValor = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextFieldData = new javax.swing.JTextField();
-        jComboBoxGastoVeiculo = new javax.swing.JComboBox<>();
-        jComboBoxGastoTipoGasto = new javax.swing.JComboBox<>();
+        jComboBoxGastoVeiculo = new javax.swing.JComboBox<Veiculo>();
+        jComboBoxGastoTipoGasto = new javax.swing.JComboBox<TipoDeGastos>();
+        jButton1 = new javax.swing.JButton();
+        jTextFieldData = new javax.swing.JFormattedTextField();
+        jButton2 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -109,17 +141,35 @@ public class TelaGastos extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Data:");
 
-        jComboBoxGastoVeiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxGastoVeiculo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jComboBoxGastoVeiculoMouseClicked(evt);
             }
         });
 
-        jComboBoxGastoTipoGasto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxGastoTipoGasto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jComboBoxGastoTipoGastoMouseClicked(evt);
+            }
+        });
+
+        jButton1.setText("add gasto");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        try {
+            jTextFieldData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -136,23 +186,29 @@ public class TelaGastos extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldData, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldData, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
                                 .addGap(3, 3, 3)
-                                .addComponent(jComboBoxGastoVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(63, 63, 63)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxGastoTipoGasto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldValor)))
+                                .addComponent(jComboBoxGastoVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(63, 63, 63)
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButton2)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jComboBoxGastoTipoGasto, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextFieldValor)))))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -167,11 +223,18 @@ public class TelaGastos extends javax.swing.JInternalFrame {
                     .addComponent(jTextFieldValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxGastoVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxGastoTipoGasto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextFieldData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jTextFieldData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -186,7 +249,7 @@ public class TelaGastos extends javax.swing.JInternalFrame {
         
         while(lista.hasNext()){
             Veiculo aux = lista.next();
-            jComboBoxGastoVeiculo.addItem(aux.getPlaca());
+            jComboBoxGastoVeiculo.addItem(aux);
         }
     }catch(Exception erro){
                 JOptionPane.showMessageDialog(this, erro.getMessage());
@@ -199,7 +262,7 @@ public class TelaGastos extends javax.swing.JInternalFrame {
         
         while(lista.hasNext()){
             TipoDeGastos aux = lista.next();
-            jComboBoxGastoTipoGasto.addItem(aux.getNomeTipoDeGasto());
+            jComboBoxGastoTipoGasto.addItem(aux);
         }
     }catch(Exception erro){
                 JOptionPane.showMessageDialog(this, erro.getMessage());
@@ -208,7 +271,7 @@ public class TelaGastos extends javax.swing.JInternalFrame {
     private void jComboBoxGastoVeiculoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxGastoVeiculoMouseClicked
         // TODO add your handling code here:
         try {
-            imprimirDadosNaComboBoxTipoGasto(tipoDeGastosDao.listar());
+            imprimirDadosNaComboBoxVeiculo(veiculoDao.listar());
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jComboBoxGastoVeiculoMouseClicked
@@ -221,10 +284,42 @@ public class TelaGastos extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jComboBoxGastoTipoGastoMouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        try {
+        gastosDao gastoDao = new gastosDao();
+        Date dataAtual = new Date();
+        String dataRecebida = jTextFieldData.getText();
+        DateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        Date dataFormatada = formato.parse(dataRecebida);
+        
+        Gasto gasto = new Gasto(0, (Veiculo) jComboBoxGastoVeiculo.getSelectedItem(), (TipoDeGastos) jComboBoxGastoTipoGasto.getSelectedItem(), Float.parseFloat(jTextFieldValor.getText()), dataFormatada);
+        
+            System.out.println(gasto.getTipoDeGasto().getIdTipoDeGasto());
+        
+        gastoDao.adicionar(gasto);
+        
+        } catch (ParseException ex) {
+            System.out.println(ex);
+        }
+        
+        
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        telaTipoDeGastos.dispose();
+        telaTipoDeGastos.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBoxGastoTipoGasto;
-    private javax.swing.JComboBox<String> jComboBoxGastoVeiculo;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<TipoDeGastos> jComboBoxGastoTipoGasto;
+    private javax.swing.JComboBox<Veiculo> jComboBoxGastoVeiculo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -233,7 +328,7 @@ public class TelaGastos extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableGasto;
-    private javax.swing.JTextField jTextFieldData;
+    private javax.swing.JFormattedTextField jTextFieldData;
     private javax.swing.JTextField jTextFieldValor;
     // End of variables declaration//GEN-END:variables
 }

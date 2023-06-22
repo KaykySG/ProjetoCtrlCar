@@ -47,10 +47,7 @@ public class tipoDeGastosDao implements itipoDeGastosDao{
     public void adicionar(TipoDeGastos tipodegastos) throws Exception {
         
         try { 
-        
-            if (!buscar(tipodegastos.getIdTipoDeGasto()).getNomeTipoDeGasto().equals("")) {
-                
-            }else{
+ 
             
             // Verificar BD e cadastro
             ferramentasPadrao fp = new ferramentasPadrao();
@@ -59,10 +56,10 @@ public class tipoDeGastosDao implements itipoDeGastosDao{
             
 
             PreparedStatement ps = conexao.prepareStatement(
-            "insert into tipodegasto (idtipodegasto, nometipodegasto ) values ('"+tipodegastos.getIdTipoDeGasto()+"', '"+tipodegastos.getIdTipoDeGasto()+"')");
+            "insert into tipodegasto (nometipodegasto ) values ('"+tipodegastos.getNomeTipoDeGasto()+"')");
             ps.executeQuery();
 
-            }
+            
         
         } catch (Exception e) {
             System.err.println(e);

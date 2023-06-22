@@ -403,8 +403,6 @@ public class TelaInicial extends javax.swing.JFrame {
             abrirRelatorio.dispose();
             abrirGrafico.dispose();
             abrirVeiculo.setVisible(true);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
             Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -422,8 +420,6 @@ public class TelaInicial extends javax.swing.JFrame {
             abrirGastos.dispose();
             abrirRelatorio.dispose();
             abrirVeiculo.dispose();
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
             Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -441,9 +437,6 @@ public class TelaInicial extends javax.swing.JFrame {
             abrirRelatorio.dispose();
             abrirGrafico.dispose();
             abrirGastos.setVisible(true);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
-
         } catch (Exception ex) {
             Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -461,9 +454,7 @@ public class TelaInicial extends javax.swing.JFrame {
             abrirGastos.dispose();
             abrirGrafico.dispose();
             abrirVeiculo.dispose();
-        } catch (PropertyVetoException ex) {
-           Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
-
+        
         } catch (Exception ex) {
             Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
         }
