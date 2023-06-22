@@ -224,6 +224,7 @@ public class CadMarca extends javax.swing.JFrame {
         } catch (Exception ex) {
             System.out.println(ex);
         }
+        jTextField1.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
  
    
