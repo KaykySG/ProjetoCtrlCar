@@ -54,15 +54,12 @@ public class modeloDao implements imodeloDao{
             Connection conexao = fp.autenticar();
             verificarExistenciaBD(conexao);
             
-            if (!buscar(modelo.getIdModelo()).getNome().equals(modelo.getNome())) {
-                
-            }else{
+            
 
             PreparedStatement ps = conexao.prepareStatement(
             "insert into modelo (nomemodelo, urlimg, idmarca) values ('"+modelo.getNome()+"', '"+modelo.getUrlImagem()+"','"+modelo.getMarca().getIdMarca()+"')");
             ps.executeQuery();
 
-            }
         
         } catch (Exception e) {
             System.err.println(e);
@@ -111,11 +108,14 @@ public class modeloDao implements imodeloDao{
             modelo.setIdModelo(ps.getResultSet().getInt("idmodelo"));
             
             Marca marca = new Marca();
-            modelo.setMarca(md.buscar(marca.getIdMarca()));
-            modelo.setNome(ps.getResultSet().getString("idmarca"));
+            modelo.setMarca(md.buscar(ps.getResultSet().getInt("idmarca")));
+            modelo.setNome(ps.getResultSet().getString("nomemodelo"));
             modelo.setUrlImagem(ps.getResultSet().getString("urlimg"));
             }
             
+            System.out.println("Nome do Modelo: "+modelo.getNome());
+            System.out.println("Marca do modelo: "+modelo.getMarca().getNome());
+            System.out.println("Id modelo: "+modelo.getIdModelo());
             
         } catch (Exception e) {
             System.out.println(e);
@@ -146,6 +146,9 @@ public class modeloDao implements imodeloDao{
                 
                 modelo.setIdModelo(ps.getResultSet().getInt("idmodelo"));
                 modelo.setMarca(md.buscar(ps.getResultSet().getInt("idmarca")));
+                
+                System.out.println("nome da marca: "+modelo.getMarca().getNome());
+                
                 modelo.setNome(ps.getResultSet().getString("nomemodelo"));
                 modelo.setUrlImagem(ps.getResultSet().getString("urlimg"));
                 

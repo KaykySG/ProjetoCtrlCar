@@ -13,13 +13,13 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
- * @author sergy
+ * @author kayky
  */
-public class JCellRender extends DefaultTableCellRenderer {
-    JLabel jLabelLogoDaMArca = new JLabel();
-    
+public class JCellRenderMarca extends DefaultTableCellRenderer {
+     JLabel jLabelLogoDaMArca = new JLabel();
+
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int col){
-            if(isSelected){
+           if(isSelected){
             this.setBackground(table.getBackground());
             this.setForeground(table.getForeground());
             
@@ -27,10 +27,11 @@ public class JCellRender extends DefaultTableCellRenderer {
             this.setBackground(table.getBackground());
             this.setForeground(table.getForeground());
             }
-            ImageIcon logo = new ImageIcon(table.getValueAt(row, col +1).toString());
+            ImageIcon logo = new ImageIcon(table.getValueAt(row, col).toString());
             jLabelLogoDaMArca.setText("");
             logo.setImage(logo.getImage().getScaledInstance(table.getRowHeight(), table.getRowHeight(), 1));
             jLabelLogoDaMArca.setIcon(logo);   
             jLabelLogoDaMArca.setHorizontalAlignment(CENTER);
             return jLabelLogoDaMArca;
-}}
+    }
+}

@@ -64,17 +64,16 @@ public class veiculoDao implements iveiculoDao{
                 
                 
                 
-      String sql = "insert into veiculo (idveiculo, idmodelo, anoveiculo, anofabricacao, urlimg, placa, renavam, status) values (?,?,?,?,?,?,?,?)";
+      String sql = "insert into veiculo (idmodelo, anoveiculo, anofabricacao, urlimg, placa, renavam, status) values (?,?,?,?,?,?,?)";
       PreparedStatement preparedStatement = conexao.prepareStatement(sql);
-      // Parameters iniciar os elementos
-      preparedStatement.setInt(1, veiculo.getIdVeiculo());
-      preparedStatement.setInt(2, veiculo.getModelo().getIdModelo());
-      preparedStatement.setInt(3, veiculo.getAnoVeiculo());
-      preparedStatement.setInt(4, veiculo.getAnoFab());          
-      preparedStatement.setString(5, veiculo.getUrlImagem());          
-      preparedStatement.setString(6, veiculo.getPlaca());          
-      preparedStatement.setString(7, veiculo.getRenavam());
-      preparedStatement.setString(8, veiculo.getStatus());
+      // Parameters iniciar os elemento
+      preparedStatement.setInt(1, veiculo.getModelo().getIdModelo());
+      preparedStatement.setInt(2, veiculo.getAnoVeiculo());
+      preparedStatement.setInt(3, veiculo.getAnoFab());          
+      preparedStatement.setString(4, veiculo.getUrlImagem());          
+      preparedStatement.setString(5, veiculo.getPlaca());          
+      preparedStatement.setString(6, veiculo.getRenavam());
+      preparedStatement.setString(7, veiculo.getStatus());
       
       preparedStatement.executeUpdate();
 
@@ -154,6 +153,9 @@ public class veiculoDao implements iveiculoDao{
                 veiculo.setPlaca(ps.getResultSet().getString("placa"));
                 veiculo.setRenavam(ps.getResultSet().getString("renavam"));
                 veiculo.setRenavam(ps.getResultSet().getString("urlimg"));
+                
+                System.out.println();
+                
                 
                 lista.add(veiculo);
             

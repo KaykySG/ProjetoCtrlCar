@@ -11,6 +11,7 @@ import com.VFPK.Persistencia.MarcaDao;
 import com.VFPK.Persistencia.modeloDao;
 import com.VFPK.Persistencia.veiculoDao;
 import com.VPFK.ferramentas.JCellRender;
+import com.VPFK.ferramentas.JCellRenderMarca;
 import java.beans.PropertyVetoException;
 import java.io.File;
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
     CadModelo telaModelo = new CadModelo();
     MarcaDao marcaDao = new MarcaDao();
     modeloDao modeloDao = new modeloDao();
+    veiculoDao veiculoDao = new veiculoDao();
     
     /**
      * Creates new form Teste
@@ -47,6 +49,7 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
         setMaximum(true);
         imprimirDadosNaComboBoxModelo(modeloDao.listar());
         imprimirDadosNaComboBoxMarca(marcaDao.listar());
+        imprimirdadosNaGrid(veiculoDao.listar());
         
     }
     
@@ -84,15 +87,17 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
      
 //Metodo de imprimir na grid 
  
- private void imprimirdadosNaGrid(ArrayList<Veiculo> listaDeMarcas){
-     try {
+ private void imprimirdadosNaGrid(ArrayList<Veiculo> listaDeVeiculo){
+    try {
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-            JCellRender JtableRenderer = new JCellRender();
-            jTable1.getColumnModel().getColumn(0).setCellRenderer(JtableRenderer);
-
+           JCellRender JtableRendererVeiculo = new JCellRender();
+           JCellRenderMarca jtableRenderMarca = new JCellRenderMarca();
+            
+            jTable1.getColumnModel().getColumn(1).setCellRenderer(jtableRenderMarca);
+            jTable1.getColumnModel().getColumn(2).setCellRenderer(JtableRendererVeiculo);
             //Limpa a tabela 
             model.setNumRows(0);
-            Iterator<Veiculo> lista = listaDeMarcas.iterator();               
+            Iterator<Veiculo> lista = listaDeVeiculo.iterator();               
 
             while (lista.hasNext()) {
                 String[] saida = new String[6];
@@ -100,19 +105,24 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
                 saida[0] = aux.getUrlImagem();
                 saida[1] = aux.getPlaca();
                 saida[2] = aux.getRenavam();
-                saida[3] = aux.getModelo().getUrlImagem();
+                saida[3] = aux.getModelo().getMarca().getUrlImagem();
                 saida[4] = aux.getAnoFab()+"";
                 saida[5] = aux.getAnoVeiculo()+"";
-                ImageIcon imageVeiculo = new ImageIcon((saida[0]));
+               ImageIcon imageMarca = new ImageIcon(aux.getModelo().getMarca().getUrlImagem());
+               //ImageIcon imageMarca = new ImageIcon("C:\\Users\\kayky\\Desktop\\download1.jpg");
+                ImageIcon imageVeiculo = new ImageIcon(aux.getUrlImagem());
+                System.out.println("antes de tudo ");
+                System.out.println(aux.getModelo().getMarca().getNome());
+                
                 //Incluir nova linha na Tabela
-                Object[] dados = {imageVeiculo, saida[1], saida[2], saida[3], saida[4],saida[5]};
+                Object[] dados = {saida[1], imageMarca, imageVeiculo, saida[2],  saida[4],saida[5]};
                 model.addRow(dados);
                 
             
          } 
         } catch(Exception erro){
             JOptionPane.showMessageDialog(this, erro.getMessage());
-      }     
+      }      
     
  }
     /**
@@ -190,13 +200,13 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
         jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6"
             }
         ));
         jTable1.setSelectionBackground(new java.awt.Color(0, 0, 102));
@@ -451,7 +461,7 @@ public class TelaVeiculo extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try {
-        veiculoDao veiculoDao = new veiculoDao();
+        
         Modelo modelo = (Modelo) jComboBoxModelo.getSelectedItem();
         
             System.out.println(modelo.getIdModelo());
