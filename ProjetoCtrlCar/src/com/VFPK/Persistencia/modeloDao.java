@@ -107,12 +107,13 @@ public class modeloDao implements imodeloDao{
             while(rs.next()){
             modelo.setIdModelo(ps.getResultSet().getInt("idmodelo"));
             
-            Marca marca = new Marca();
+            
             modelo.setMarca(md.buscar(ps.getResultSet().getInt("idmarca")));
             modelo.setNome(ps.getResultSet().getString("nomemodelo"));
             modelo.setUrlImagem(ps.getResultSet().getString("urlimg"));
             }
-            
+                        System.out.println("Comecando a busscar");
+
             System.out.println("Nome do Modelo: "+modelo.getNome());
             System.out.println("Marca do modelo: "+modelo.getMarca().getNome());
             System.out.println("Id modelo: "+modelo.getIdModelo());
@@ -147,7 +148,7 @@ public class modeloDao implements imodeloDao{
                 modelo.setIdModelo(ps.getResultSet().getInt("idmodelo"));
                 modelo.setMarca(md.buscar(ps.getResultSet().getInt("idmarca")));
                 
-                System.out.println("nome da marca: "+modelo.getMarca().getNome());
+                System.out.println("nome da marca: "+modelo.getMarca().getNome()+" id: "+modelo.getMarca().getIdMarca());
                 
                 modelo.setNome(ps.getResultSet().getString("nomemodelo"));
                 modelo.setUrlImagem(ps.getResultSet().getString("urlimg"));
